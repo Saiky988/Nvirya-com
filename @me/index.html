@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nvirya (@me) — Independent Developer</title>
+  <meta name="description" content="Personal profile of the independent developer behind Nvirya — building quiet, durable software tools, unified AI workspaces, and lightweight web systems." />
+  <link rel="canonical" href="https://nvirya.com/@me" id="canonical-link" />
+
+  <!-- Open Graph / Social Preview Metadata -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="Nvirya" />
+  <meta property="og:title" content="Nvirya (@me) — Independent Developer" />
+  <meta property="og:description" content="Independent developer building software tools, client-side filtering engines, and unified AI workspaces under Nvirya." />
+  <meta property="og:url" content="https://nvirya.com/@me" />
+  <meta property="profile:username" content="me" />
+
+  <!-- Twitter Card Metadata -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Nvirya (@me) — Independent Developer" />
+  <meta name="twitter:description" content="Independent developer building software tools, client-side filtering engines, and unified AI workspaces under Nvirya." />
+
+  <!-- Favicon (Minimalist Geometric Monogram) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2309090b'/%3E%3Cpath d='M18 46V18h6.5l15 20V18H46v28h-6.5l-15-20v20H18z' fill='%23fafafa'/%3E%3C/svg%3E" />
+
+  <!-- Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* ==========================================================================
+       NVIRYA DESIGN TOKENS — SWISS EDITORIAL / RESTRAINED MONOCHROME
+       ========================================================================== */
+    :root {
+      --bg: #fafaf9;
+      --bg-elevated: #f4f4f2;
+      --bg-hover: rgba(24, 24, 27, 0.04);
+      --border: #e4e4e7;
+      --border-subtle: #ededeb;
+      --text-primary: #18181b;
+      --text-secondary: #52525b;
+      --text-muted: #71717a;
+      --accent-dot: #10b981;
+      --focus-ring: #18181b;
+    }
+
+    html.dark {
+      --bg: #09090b;
+      --bg-elevated: #111114;
+      --bg-hover: rgba(250, 250, 250, 0.04);
+      --border: #1f1f24;
+      --border-subtle: #16161a;
+      --text-primary: #f4f4f5;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent-dot: #10b981;
+      --focus-ring: #e4e4e7;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      transition: background-color 150ms ease, color 150ms ease;
+    }
+
+    /* Hairline borders and surfaces */
+    .nvr-border {
+      border-color: var(--border);
+    }
+    .nvr-border-subtle {
+      border-color: var(--border-subtle);
+    }
+    .nvr-surface {
+      background-color: var(--bg-elevated);
+    }
+    .nvr-hover {
+      transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+    }
+    .nvr-hover:hover {
+      background-color: var(--bg-hover);
+    }
+
+    /* Typography helpers */
+    .nvr-text-primary { color: var(--text-primary); }
+    .nvr-text-secondary { color: var(--text-secondary); }
+    .nvr-text-muted { color: var(--text-muted); }
+
+    /* Editorial section grid: label column + content column on desktop */
+    .editorial-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+    @media (min-width: 680px) {
+      .editorial-row {
+        grid-template-columns: 148px minmax(0, 1fr);
+        gap: 2rem;
+      }
+    }
+
+    /* Keyboard focus state */
+    :focus-visible {
+      outline: 1.5px solid var(--focus-ring);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    /* Selection */
+    ::selection {
+      background-color: rgba(161, 161, 170, 0.24);
+      color: var(--text-primary);
+    }
+
+    /* Reduced motion compliance */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen text-[15px] leading-relaxed">
+
+  <!-- Skip to content link for keyboard accessibility -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-3 focus:py-1.5 nvr-surface border nvr-border text-xs font-mono">
+    Skip to content
+  </a>
+
+  <!-- ==========================================================================
+       SHARED HEADER & ROUTE BAR (nvirya.com & nvirya.com/@me)
+       ========================================================================== -->
+  <header class="sticky top-0 z-30 border-b nvr-border" style="background-color: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px);">
+    <div class="max-w-[760px] mx-auto px-5 sm:px-8 h-14 flex items-center justify-between gap-4">
+      
+      <!-- Brand / Breadcrumb Identity -->
+      <div class="flex items-center gap-2 min-w-0">
+        <button
+          type="button"
+          id="brand-home-btn"
+          class="font-mono text-xs font-medium tracking-wider uppercase nvr-text-primary hover:opacity-80 transition-opacity flex items-center gap-2"
+          aria-label="Go to Nvirya home (nvirya.com)"
+        >
+          <span class="inline-block w-2 h-2 rounded-full bg-current"></span>
+          <span>NVIRYA</span>
+        </button>
+        <span class="font-mono text-xs nvr-text-muted select-none">/</span>
+        <button
+          type="button"
+          id="breadcrumb-route-btn"
+          class="font-mono text-xs nvr-text-secondary hover:nvr-text-primary transition-colors truncate"
+          title="Current route on nvirya.com"
+        >
+          @me
+        </button>
+      </div>
+
+      <!-- Primary Navigation -->
+      <nav aria-label="Site navigation" class="flex items-center gap-1 sm:gap-2">
+        <button
+          type="button"
+          data-route="/"
+          class="nav-route-btn px-2.5 py-1 rounded text-xs font-mono nvr-text-secondary nvr-hover"
+        >
+          Index
+        </button>
+        <button
+          type="button"
+          data-route="/@me"
+          aria-current="page"
+          class="nav-route-btn px-2.5 py-1 rounded text-xs font-mono nvr-text-primary border nvr-border nvr-surface"
+        >
+          /@me
+        </button>
+
+        <span class="h-3.5 w-[1px] bg-[var(--border)] mx-1" aria-hidden="true"></span>
+
+        <!-- Config Inspector Trigger (for editing unverified personal fields cleanly) -->
+        <button
+          type="button"
+          id="open-config-btn"
+          class="px-2 py-1 rounded text-xs font-mono nvr-text-muted hover:nvr-text-primary nvr-hover flex items-center gap-1.5"
+          title="Inspect or edit profile.config.js data module"
+          aria-label="Edit profile configuration"
+        >
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+          <span class="hidden sm:inline">config</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button
+          type="button"
+          id="theme-toggle-btn"
+          class="p-1.5 rounded nvr-text-secondary hover:nvr-text-primary nvr-hover"
+          aria-label="Toggle color theme"
+          title="Toggle dark/light mode"
+        >
+          <!-- Sun icon (shown in dark mode) -->
+          <svg id="icon-sun" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path><path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path><path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <!-- Moon icon (shown in light mode) -->
+          <svg id="icon-moon" class="w-3.5 h-3.5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN CONTENT AREA
+       ========================================================================== -->
+  <main id="main-content" class="flex-1 max-w-[760px] w-full mx-auto px-5 sm:px-8 pt-10 pb-20 sm:pt-16 sm:pb-24">
+
+    <!-- ========================================================================
+         VIEW 1: PERSONAL PROFILE ROUTE (nvirya.com/@me)
+         ======================================================================== -->
+    <article id="view-profile" aria-labelledby="profile-display-name" class="space-y-12 sm:space-y-14">
+
+      <!-- A. PROFILE HEADER -->
+      <header class="space-y-6 pb-10 border-b nvr-border">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <!-- Avatar / Monogram Asset -->
+            <div id="profile-avatar-container" class="w-12 h-12 rounded-full border nvr-border nvr-surface flex items-center justify-center shrink-0 overflow-hidden select-none">
+              <svg id="profile-avatar-svg" class="w-6 h-6 nvr-text-primary" viewBox="0 0 32 32" fill="none" role="img" aria-label="Nvirya monogram avatar">
+                <path d="M8 24V8h3.4l9.2 12.2V8H24v16h-3.4L11.4 11.8V24H8Z" fill="currentColor"/>
+              </svg>
+              <img id="profile-avatar-img" src="" alt="Nvirya profile avatar" class="w-full h-full object-cover hidden" />
+            </div>
+
+            <div>
+              <div class="flex items-baseline gap-2.5 flex-wrap">
+                <h1 id="profile-display-name" class="text-xl sm:text-2xl font-semibold tracking-tight nvr-text-primary">
+                  Nvirya
+                </h1>
+                <span id="profile-handle" class="font-mono text-xs nvr-text-muted">
+                  /@me
+                </span>
+                <!-- Optional verified full name badge (only rendered if configured in PROFILE_CONFIG) -->
+                <span id="profile-fullname-badge" class="hidden font-mono text-xs nvr-text-secondary"></span>
+              </div>
+              <p id="profile-role" class="text-sm nvr-text-secondary mt-0.5">
+                Independent Developer
+              </p>
+            </div>
+          </div>
+
+          <!-- Restrained metadata / status pills (only rendered if verified / enabled) -->
+          <div id="profile-meta-pills" class="flex flex-wrap items-center gap-2 sm:justify-end">
+            <span id="profile-status-pill" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded border nvr-border nvr-surface font-mono text-[11px] nvr-text-secondary">
+              <span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--accent-dot);" aria-hidden="true"></span>
+              <span id="profile-status-text">Building independent tools</span>
+            </span>
+            <span id="profile-location-pill" class="hidden items-center gap-1.5 px-2.5 py-1 rounded border nvr-border font-mono text-[11px] nvr-text-muted">
+              <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+              <span id="profile-location-text"></span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Concise Header Introduction -->
+        <p id="profile-headline" class="text-[15px] sm:text-base nvr-text-primary leading-relaxed max-w-[62ch]">
+          I design and build self-contained software systems, browser utilities, and developer workspaces under <a href="#/" data-nav-route="/" class="underline underline-offset-4 decoration-[var(--border)] hover:decoration-current transition-colors">Nvirya</a>—focusing on fast execution, clear interfaces, and long-term maintainability.
+        </p>
+      </header>
+
+      <!-- B. ABOUT -->
+      <section aria-labelledby="section-about" class="editorial-row">
+        <div class="pt-0.5">
+          <h2 id="section-about" class="font-mono text-xs uppercase tracking-wider nvr-text-muted">
+            01 / About
+          </h2>
+        </div>
+        <div id="profile-about-body" class="space-y-4 nvr-text-secondary leading-relaxed max-w-[62ch]">
+          <!-- Populated from PROFILE_CONFIG.aboutParagraphs -->
+        </div>
+      </section>
+
+      <div class="border-t nvr-border-subtle" role="separator"></div>
+
+      <!-- C. AREAS OF INTEREST -->
+      <section aria-labelledby="section-interests" class="editorial-row">
+        <div class="pt-0.5">
+          <h2 id="section-interests" class="font-mono text-xs uppercase tracking-wider nvr-text-muted">
+            02 / Focus
+          </h2>
+        </div>
+        <div class="space-y-4">
+          <p class="text-xs font-mono nvr-text-muted">
+            Disciplines grounded in active Nvirya systems and repositories
+          </p>
+          <dl id="profile-interests-list" class="divide-y divide-[var(--border-subtle)] border-t border-b nvr-border-subtle">
+            <!-- Populated from PROFILE_CONFIG.areasOfInterest -->
+          </dl>
+        </div>
+      </section>
+
+      <!-- D. CURRENTLY EXPLORING (Optional, omitted automatically if empty in config) -->
+      <section id="section-exploring-wrapper" aria-labelledby="section-exploring" class="editorial-row">
+        <div class="pt-0.5">
+          <h2 id="section-exploring" class="font-mono text-xs uppercase tracking-wider nvr-text-muted">
+            03 / Now
+          </h2>
+        </div>
+        <div class="space-y-3">
+          <ul id="profile-exploring-list" class="space-y-2.5 text-sm nvr-text-secondary">
+            <!-- Populated from PROFILE_CONFIG.currentlyExploring -->
+          </ul>
+        </div>
+      </section>
+
+      <div class="border-t nvr-border-subtle" role="separator"></div>
+
+      <!-- E. SELECTED PERSONAL WORK (Max 3 compact links to existing Nvirya projects) -->
+      <section id="section-work-wrapper" aria-labelledby="section-work" class="editorial-row">
+        <div class="pt-0.5">
+          <h2 id="section-work" class="font-mono text-xs uppercase tracking-wider nvr-text-muted">
+            04 / Selected Work
+          </h2>
+        </div>
+        <div class="space-y-3">
+          <div id="profile-projects-list" class="divide-y divide-[var(--border-subtle)] border-t border-b nvr-border-subtle">
+            <!-- Populated from PROFILE_CONFIG.selectedWork (capped at 3 items) -->
+          </div>
+          <div class="pt-1 flex items-center justify-between text-xs font-mono nvr-text-muted">
+            <span>Full index lives on the main site.</span>
+            <a href="#/" data-nav-route="/" class="nvr-text-secondary hover:nvr-text-primary inline-flex items-center gap-1 transition-colors">
+              <span>View nvirya.com</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div class="border-t nvr-border-subtle" role="separator"></div>
+
+      <!-- F. LINKS AND CONTACT -->
+      <section aria-labelledby="section-links" class="editorial-row">
+        <div class="pt-0.5">
+          <h2 id="section-links" class="font-mono text-xs uppercase tracking-wider nvr-text-muted">
+            05 / Contact
+          </h2>
+        </div>
+        <div class="space-y-4">
+          <p class="text-sm nvr-text-secondary max-w-[54ch]">
+            Direct correspondence and verified endpoints across the Nvirya ecosystem.
+          </p>
+          <ul id="profile-links-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <!-- Populated from PROFILE_CONFIG.links -->
+          </ul>
+
+          <!-- Quick utility actions -->
+          <div class="pt-2 flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              id="copy-email-btn"
+              class="inline-flex items-center gap-2 px-3 py-1.5 rounded border nvr-border nvr-surface text-xs font-mono nvr-text-secondary hover:nvr-text-primary nvr-hover"
+            >
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+              </svg>
+              <span id="copy-email-label">Copy me@nvirya.com</span>
+            </button>
+
+            <button
+              type="button"
+              id="copy-canonical-btn"
+              class="inline-flex items-center gap-2 px-3 py-1.5 rounded border nvr-border text-xs font-mono nvr-text-muted hover:nvr-text-primary nvr-hover"
+            >
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+              <span>nvirya.com/@me</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </article>
+
+    <!-- ========================================================================
+         VIEW 2: EXISTING NVIRYA MAIN ECOSYSTEM PAGE (nvirya.com/)
+         Preserved so internal navigation between / and /@me can be verified
+         ======================================================================== -->
+    <section id="view-home" aria-labelledby="home-heading" class="hidden space-y-12 sm:space-y-16">
+      <div class="space-y-5 pb-10 border-b nvr-border">
+        <div class="flex flex-wrap items-center gap-3 font-mono text-xs nvr-text-muted">
+          <span>NVR://DIGITAL</span>
+          <span>·</span>
+          <span>BUILD 001-ALPHA</span>
+          <span>·</span>
+          <span class="inline-flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--accent-dot);"></span>
+            STATUS: ACTIVE (EST. 2026)
+          </span>
+        </div>
+
+        <h1 id="home-heading" class="text-2xl sm:text-4xl font-semibold tracking-tight nvr-text-primary max-w-[26ch]">
+          Technology, built with intent.
+        </h1>
+
+        <p class="text-[15px] sm:text-base nvr-text-secondary max-w-[58ch] leading-relaxed">
+          Not everything needs to be built loudly. Nvirya is an independent technology ecosystem building digital products, tools, and experiments. Small systems. Useful ideas. Long-term direction.
+        </p>
+
+        <div class="pt-2 flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            id="home-to-profile-btn"
+            class="inline-flex items-center gap-2 px-3.5 py-2 rounded border nvr-border nvr-surface text-xs font-mono nvr-text-primary nvr-hover"
+          >
+            <span>Developer Profile (/@me)</span>
+            <span aria-hidden="true">→</span>
+          </button>
+          <a
+            href="https://nvirya.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded border nvr-border text-xs font-mono nvr-text-secondary hover:nvr-text-primary nvr-hover"
+          >
+            <span>Open Nvirya AI Workspace</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Ecosystem Pillars (01 Tools, 02 Systems, 03 Experiments, 04 Products) -->
+      <div class="space-y-4">
+        <h2 class="font-mono text-xs uppercase tracking-wider nvr-text-muted">
+          Architecture / Pillars
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-4 border nvr-border rounded nvr-surface space-y-1.5">
+            <div class="font-mono text-xs nvr-text-muted">01 / TOOLS</div>
+            <div class="text-sm font-medium nvr-text-primary">Focused Client Utilities</div>
+            <p class="text-xs nvr-text-secondary leading-relaxed">
+              Browser userscripts, DOM inspection tools, and cosmetic filtering engines engineered for zero-latency execution.
+            </p>
+          </div>
+          <div class="p-4 border nvr-border rounded nvr-surface space-y-1.5">
+            <div class="font-mono text-xs nvr-text-muted">02 / SYSTEMS</div>
+            <div class="text-sm font-medium nvr-text-primary">API & Service Backbones</div>
+            <p class="text-xs nvr-text-secondary leading-relaxed">
+              Lightweight Python/FastAPI endpoints and persistent data layers powering translation and automation workflows.
+            </p>
+          </div>
+          <div class="p-4 border nvr-border rounded nvr-surface space-y-1.5">
+            <div class="font-mono text-xs nvr-text-muted">03 / EXPERIMENTS</div>
+            <div class="text-sm font-medium nvr-text-primary">Applied Research</div>
+            <p class="text-xs nvr-text-secondary leading-relaxed">
+              Iterative prototypes testing agentic task flows, rule-based DOM mutation observers, and cross-channel bots.
+            </p>
+          </div>
+          <div class="p-4 border nvr-border rounded nvr-surface space-y-1.5">
+            <div class="font-mono text-xs nvr-text-muted">04 / PRODUCTS</div>
+            <div class="text-sm font-medium nvr-text-primary">Unified Workspaces</div>
+            <p class="text-xs nvr-text-secondary leading-relaxed">
+              Cohesive web interfaces for conversations, agent tasks, and generated outputs backed by api.nvirya.com.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       G. UNDERSTATED SHARED FOOTER
+       ========================================================================== -->
+  <footer class="border-t nvr-border mt-auto">
+    <div class="max-w-[760px] mx-auto px-5 sm:px-8 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-mono nvr-text-muted">
+      <div class="flex items-center gap-2">
+        <span>© 2026 Nvirya</span>
+        <span>·</span>
+        <span>NVR://SYSTEM</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="#/" data-nav-route="/" class="hover:nvr-text-primary transition-colors">nvirya.com</a>
+        <a href="#/@me" data-nav-route="/@me" class="hover:nvr-text-primary transition-colors">nvirya.com/@me</a>
+        <a href="mailto:me@nvirya.com" class="hover:nvr-text-primary transition-colors">me@nvirya.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       PROFILE.CONFIG.JS INSPECTOR / EDITOR MODAL
+       Allows maintaining personal data without exposing fake placeholders on page
+       ========================================================================== -->
+  <div
+    id="config-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+    style="background-color: rgba(9, 9, 11, 0.72); backdrop-filter: blur(4px);"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="config-modal-title"
+  >
+    <div class="w-full max-w-lg border nvr-border rounded-md nvr-surface p-5 sm:p-6 space-y-4 shadow-xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-start justify-between gap-4 border-b nvr-border pb-3">
+        <div>
+          <h2 id="config-modal-title" class="font-mono text-xs uppercase tracking-wider nvr-text-primary">
+            src/data/profile.config.js
+          </h2>
+          <p class="text-xs nvr-text-muted mt-1">
+            Unverified personal fields default to <code class="font-mono">null</code> so placeholder text never appears on the live page. Fill in any field below to preview or export.
+          </p>
+        </div>
+        <button
+          type="button"
+          id="close-config-btn"
+          class="p-1 rounded nvr-text-muted hover:nvr-text-primary nvr-hover"
+          aria-label="Close configuration editor"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <form id="config-form" class="space-y-3 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <label class="block space-y-1">
+            <span class="font-mono nvr-text-secondary">displayName</span>
+            <input
+              type="text"
+              id="cfg-display-name"
+              class="w-full px-2.5 py-1.5 rounded border nvr-border bg-transparent font-mono text-xs nvr-text-primary"
+              placeholder="Nvirya"
+            />
+          </label>
+          <label class="block space-y-1">
+            <span class="font-mono nvr-text-secondary">fullName <span class="nvr-text-muted">(optional)</span></span>
+            <input
+              type="text"
+              id="cfg-full-name"
+              class="w-full px-2.5 py-1.5 rounded border nvr-border bg-transparent font-mono text-xs nvr-text-primary"
+              placeholder="null (unverified)"
+            />
+          </label>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <label class="block space-y-1">
+            <span class="font-mono nvr-text-secondary">role</span>
+            <input
+              type="text"
+              id="cfg-role"
+              class="w-full px-2.5 py-1.5 rounded border nvr-border bg-transparent font-mono text-xs nvr-text-primary"
+              placeholder="Independent Developer"
+            />
+          </label>
+          <label class="block space-y-1">
+            <span class="font-mono nvr-text-secondary">statusText <span class="nvr-text-muted">(optional)</span></span>
+            <input
+              type="text"
+              id="cfg-status"
+              class="w-full px-2.5 py-1.5 rounded border nvr-border bg-transparent font-mono text-xs nvr-text-primary"
+              placeholder="Building independent tools"
+            />
+          </label>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <label class="block space-y-1">
+            <span class="font-mono nvr-text-secondary">location / timezone <span class="nvr-text-muted">(optional)</span></span>
+            <input
+              type="text"
+              id="cfg-location"
+              class="w-full px-2.5 py-1.5 rounded border nvr-border bg-transparent font-mono text-xs nvr-text-primary"
+              placeholder="null (e.g. UTC+7)"
+            />
+          </label>
+          <label class="block space-y-1">
+            <span class="font-mono nvr-text-secondary">githubUrl <span class="nvr-text-muted">(optional)</span></span>
+            <input
+              type="url"
+              id="cfg-github"
+              class="w-full px-2.5 py-1.5 rounded border nvr-border bg-transparent font-mono text-xs nvr-text-primary"
+              placeholder="null (https://github.com/...)"
+            />
+          </label>
+        </div>
+
+        <label class="block space-y-1">
+          <span class="font-mono nvr-text-secondary">avatarUrl <span class="nvr-text-muted">(optional image URL; defaults to NVR monogram)</span></span>
+          <input
+            type="url"
+            id="cfg-avatar"
+            class="w-full px-2.5 py-1.5 rounded border nvr-border bg-transparent font-mono text-xs nvr-text-primary"
+            placeholder="https://raw.nvirya.com/assets/icon.png"
+          />
+        </label>
+
+        <div class="pt-3 border-t nvr-border flex flex-wrap items-center justify-between gap-2">
+          <button
+            type="button"
+            id="copy-config-json-btn"
+            class="px-3 py-1.5 rounded border nvr-border font-mono text-xs nvr-text-secondary hover:nvr-text-primary nvr-hover"
+          >
+            Copy JSON Config
+          </button>
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              id="reset-config-btn"
+              class="px-3 py-1.5 rounded border nvr-border font-mono text-xs nvr-text-muted hover:nvr-text-primary nvr-hover"
+            >
+              Reset Defaults
+            </button>
+            <button
+              type="submit"
+              class="px-3.5 py-1.5 rounded border nvr-border font-mono text-xs font-medium nvr-text-primary nvr-hover"
+              style="background-color: var(--bg);"
+            >
+              Apply to /@me
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       SUBTLE STATUS TOAST
+       ========================================================================== -->
+  <div
+    id="status-toast"
+    role="status"
+    aria-live="polite"
+    class="fixed bottom-5 right-5 z-40 pointer-events-none opacity-0 transition-opacity duration-150 px-3 py-1.5 rounded border nvr-border nvr-surface font-mono text-xs nvr-text-primary shadow-sm"
+  >
+    Copied to clipboard
+  </div>
+
+  <!-- ==========================================================================
+       APPLICATION DATA MODULE & CONTROLLER
+       ========================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ------------------------------------------------------------------------
+         1. PROFILE CONFIGURATION MODULE (Editable Content Separation)
+         Verified details come from nvirya.com, api.nvirya.com, and Nvirya repos.
+         Unverified biographical fields are explicitly set to null so placeholder
+         strings are never shown as fake personal data on the live page.
+         ------------------------------------------------------------------------ */
+      const DEFAULT_PROFILE_CONFIG = {
+        handle: '@me',
+        canonicalUrl: 'https://nvirya.com/@me',
+        displayName: 'Nvirya',
+        fullName: null,        // Set your legal/personal name if desired; null hides it cleanly
+        role: 'Independent Developer',
+        statusText: 'Building independent tools',
+        location: null,        // e.g. 'Vietnam · UTC+7' — kept null until explicitly confirmed
+        avatarUrl: null,       // Optional: 'https://raw.nvirya.com/assets/icon.png'
+        githubUrl: null,       // Optional: 'https://github.com/<your-handle>'
+        socialUrl: null,       // Optional public social profile URL
+        email: 'me@nvirya.com',
+        introHeadline:
+          'I design and build self-contained software systems, browser utilities, and developer workspaces under Nvirya—focusing on fast execution, clear interfaces, and long-term maintainability.',
+        aboutParagraphs: [
+          'Most of what I build starts from a practical friction point: a web page cluttered with intrusive overlays, a translation workflow split across too many tabs, or an AI interface that buries simple tasks under heavy chrome. I prefer solving those problems with small, well-scoped systems that do their job quietly.',
+          'My work spans client-side JavaScript engines that run at document-start, minimal web interfaces with predictable state, and lightweight Python services backed by SQLite. I care about readable code, low runtime overhead, and software that remains easy to understand and maintain months later.'
+        ],
+        areasOfInterest: [
+          {
+            index: '01',
+            title: 'Frontend Engineering & Interface Design',
+            detail: 'Restrained, keyboard-friendly web interfaces, semantic markup, and predictable state management without unnecessary dependencies.'
+          },
+          {
+            index: '02',
+            title: 'Browser Tooling & Client-Side Runtime',
+            detail: 'Userscript architecture, DOM mutation filtering, cosmetic rule engines, popup/redirect protection, and interactive element pickers.'
+          },
+          {
+            index: '03',
+            title: 'AI Workspaces & Agent Interfaces',
+            detail: 'Unified conversational environments, task orchestration, and structured output workflows connected to api.nvirya.com.'
+          },
+          {
+            index: '04',
+            title: 'Backend Services & Bot Automation',
+            detail: 'FastAPI/Uvicorn microservices, persistent SQLite storage, and multi-server Discord automation with real-time translation.'
+          }
+        ],
+        currentlyExploring: [
+          'Refining heuristic anti-adblock and shadow-DOM element selection in Nvirya AdGuard (v10.4.0).',
+          'Streamlining agent task execution and response streaming across the Nvirya AI workspace.',
+          'Low-latency channel auto-translation caching and slash-command synchronization for Nvirya Translate.'
+        ],
+        selectedWork: [
+          {
+            name: 'Nvirya AI',
+            tag: 'Workspace · api.nvirya.com',
+            description: 'Unified workspace for conversations, autonomous agent tasks, and generated outputs.',
+            url: 'https://nvirya.com/'
+          },
+          {
+            name: 'Nvirya AdGuard',
+            tag: 'Userscript · v10.4.0',
+            description: 'Client-side filtering engine with popup/redirect protection, cosmetic rules, and an in-page DOM element picker.',
+            url: 'https://raw.nvirya.com/adguard/nvirya-adguard.user.js'
+          },
+          {
+            name: 'Nvirya Translate',
+            tag: 'FastAPI · Discord App',
+            description: 'Automated multi-channel Discord translation bot and FastAPI service with persistent SQLite channel state.',
+            url: 'https://www.nvirya.com/'
+          }
+        ],
+        links: [
+          {
+            label: 'Nvirya Main Site',
+            value: 'nvirya.com',
+            url: 'https://www.nvirya.com/',
+            external: true,
+            icon: 'globe'
+          },
+          {
+            label: 'Nvirya AI Workspace',
+            value: 'api.nvirya.com',
+            url: 'https://nvirya.com/',
+            external: true,
+            icon: 'terminal'
+          },
+          {
+            label: 'Email',
+            value: 'me@nvirya.com',
+            url: 'mailto:me@nvirya.com',
+            external: false,
+            icon: 'mail'
+          }
+        ]
+      };
+
+      const STORAGE_KEY_CONFIG = 'nvirya_profile_config_v1';
+      const STORAGE_KEY_THEME = 'nvirya_theme_v1';
+
+      function loadProfileConfig() {
+        try {
+          const raw = window.localStorage.getItem(STORAGE_KEY_CONFIG);
+          if (!raw) return structuredCloneConfig(DEFAULT_PROFILE_CONFIG);
+          const parsed = JSON.parse(raw);
+          return Object.assign(structuredCloneConfig(DEFAULT_PROFILE_CONFIG), parsed);
+        } catch (err) {
+          return structuredCloneConfig(DEFAULT_PROFILE_CONFIG);
+        }
+      }
+
+      function saveProfileConfig(cfg) {
+        try {
+          window.localStorage.setItem(STORAGE_KEY_CONFIG, JSON.stringify(cfg));
+        } catch (err) {
+          // Ignore storage errors in sandboxed iframes
+        }
+      }
+
+      function structuredCloneConfig(obj) {
+        return JSON.parse(JSON.stringify(obj));
+      }
+
+      let profileConfig = loadProfileConfig();
+
+      /* ------------------------------------------------------------------------
+         2. INLINE LUCIDE-STYLE SVG ICONS
+         ------------------------------------------------------------------------ */
+      function getIconSvg(name) {
+        switch (name) {
+          case 'github':
+            return '<svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>';
+          case 'mail':
+            return '<svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>';
+          case 'terminal':
+            return '<svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>';
+          case 'globe':
+          default:
+            return '<svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>';
+        }
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      /* ------------------------------------------------------------------------
+         3. RENDER PROFILE VIEW FROM PROFILE_CONFIG
+         ------------------------------------------------------------------------ */
+      function renderProfile() {
+        // Display Name & Role
+        const nameEl = document.getElementById('profile-display-name');
+        const roleEl = document.getElementById('profile-role');
+        const fullNameBadge = document.getElementById('profile-fullname-badge');
+
+        nameEl.textContent = profileConfig.displayName || 'Nvirya';
+        roleEl.textContent = profileConfig.role || 'Independent Developer';
+
+        if (profileConfig.fullName && profileConfig.fullName.trim()) {
+          fullNameBadge.textContent = '· ' + profileConfig.fullName.trim();
+          fullNameBadge.classList.remove('hidden');
+        } else {
+          fullNameBadge.textContent = '';
+          fullNameBadge.classList.add('hidden');
+        }
+
+        // Avatar
+        const avatarImg = document.getElementById('profile-avatar-img');
+        const avatarSvg = document.getElementById('profile-avatar-svg');
+        if (profileConfig.avatarUrl && profileConfig.avatarUrl.trim()) {
+          avatarImg.src = profileConfig.avatarUrl.trim();
+          avatarImg.alt = (profileConfig.displayName || 'Nvirya') + ' profile avatar';
+          avatarImg.classList.remove('hidden');
+          avatarSvg.classList.add('hidden');
+        } else {
+          avatarImg.classList.add('hidden');
+          avatarSvg.classList.remove('hidden');
+        }
+
+        // Status & Location pills
+        const statusPill = document.getElementById('profile-status-pill');
+        const statusText = document.getElementById('profile-status-text');
+        if (profileConfig.statusText && profileConfig.statusText.trim()) {
+          statusText.textContent = profileConfig.statusText.trim();
+          statusPill.classList.remove('hidden');
+        } else {
+          statusPill.classList.add('hidden');
+        }
+
+        const locationPill = document.getElementById('profile-location-pill');
+        const locationText = document.getElementById('profile-location-text');
+        if (profileConfig.location && profileConfig.location.trim()) {
+          locationText.textContent = profileConfig.location.trim();
+          locationPill.classList.remove('hidden');
+          locationPill.classList.add('inline-flex');
+        } else {
+          locationPill.classList.add('hidden');
+          locationPill.classList.remove('inline-flex');
+        }
+
+        // About paragraphs
+        const aboutBody = document.getElementById('profile-about-body');
+        aboutBody.innerHTML = (profileConfig.aboutParagraphs || [])
+          .map(function (p) {
+            return '<p>' + escapeHtml(p) + '</p>';
+          })
+          .join('');
+
+        // Areas of Interest
+        const interestsList = document.getElementById('profile-interests-list');
+        interestsList.innerHTML = (profileConfig.areasOfInterest || [])
+          .map(function (item) {
+            return (
+              '<div class="py-3.5 flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-6">' +
+                '<dt class="text-sm font-medium nvr-text-primary flex items-baseline gap-2.5 shrink-0">' +
+                  '<span class="font-mono text-[11px] nvr-text-muted">' + escapeHtml(item.index) + '</span>' +
+                  '<span>' + escapeHtml(item.title) + '</span>' +
+                '</dt>' +
+                '<dd class="text-xs sm:text-sm nvr-text-secondary sm:text-right max-w-[44ch]">' +
+                  escapeHtml(item.detail) +
+                '</dd>' +
+              '</div>'
+            );
+          })
+          .join('');
+
+        // Currently Exploring (omit section if empty)
+        const exploringWrapper = document.getElementById('section-exploring-wrapper');
+        const exploringList = document.getElementById('profile-exploring-list');
+        const exploringItems = profileConfig.currentlyExploring || [];
+        if (exploringItems.length === 0) {
+          exploringWrapper.classList.add('hidden');
+        } else {
+          exploringWrapper.classList.remove('hidden');
+          exploringList.innerHTML = exploringItems
+            .map(function (entry) {
+              return (
+                '<li class="flex items-start gap-3">' +
+                  '<span class="font-mono text-xs nvr-text-muted mt-0.5 select-none">—</span>' +
+                  '<span>' + escapeHtml(entry) + '</span>' +
+                '</li>'
+              );
+            })
+            .join('');
+        }
+
+        // Selected Personal Work (strictly capped at max 3 items per architecture spec)
+        const workWrapper = document.getElementById('section-work-wrapper');
+        const projectsList = document.getElementById('profile-projects-list');
+        const projects = (profileConfig.selectedWork || []).slice(0, 3);
+        if (projects.length === 0) {
+          workWrapper.classList.add('hidden');
+        } else {
+          workWrapper.classList.remove('hidden');
+          projectsList.innerHTML = projects
+            .map(function (proj) {
+              return (
+                '<a href="' + escapeHtml(proj.url) + '" target="_blank" rel="noopener noreferrer" class="group block py-3.5 px-2 -mx-2 rounded nvr-hover">' +
+                  '<div class="flex items-baseline justify-between gap-3">' +
+                    '<div class="flex items-baseline gap-2.5 flex-wrap">' +
+                      '<span class="text-sm font-medium nvr-text-primary group-hover:underline underline-offset-4">' +
+                        escapeHtml(proj.name) +
+                      '</span>' +
+                      '<span class="font-mono text-[11px] nvr-text-muted">' +
+                        escapeHtml(proj.tag || '') +
+                      '</span>' +
+                    '</div>' +
+                    '<span class="font-mono text-xs nvr-text-muted group-hover:nvr-text-primary transition-colors shrink-0" aria-hidden="true">↗</span>' +
+                  '</div>' +
+                  '<p class="text-xs sm:text-sm nvr-text-secondary mt-1">' +
+                    escapeHtml(proj.description) +
+                  '</p>' +
+                '</a>'
+              );
+            })
+            .join('');
+        }
+
+        // Links and Contact
+        const linksList = document.getElementById('profile-links-list');
+        const activeLinks = (profileConfig.links || []).slice();
+        if (profileConfig.githubUrl && profileConfig.githubUrl.trim()) {
+          const ghClean = profileConfig.githubUrl.trim().replace(/^https?:\/\//, '');
+          activeLinks.unshift({
+            label: 'GitHub',
+            value: ghClean,
+            url: profileConfig.githubUrl.trim(),
+            external: true,
+            icon: 'github'
+          });
+        }
+
+        linksList.innerHTML = activeLinks
+          .map(function (link) {
+            const targetAttrs = link.external ? ' target="_blank" rel="noopener noreferrer"' : '';
+            const arrow = link.external ? '↗' : '→';
+            return (
+              '<li>' +
+                '<a href="' + escapeHtml(link.url) + '"' + targetAttrs + ' class="flex items-center justify-between gap-3 p-3 rounded border nvr-border nvr-hover group">' +
+                  '<div class="flex items-center gap-2.5 min-w-0">' +
+                    '<span class="nvr-text-muted group-hover:nvr-text-primary transition-colors">' +
+                      getIconSvg(link.icon) +
+                    '</span>' +
+                    '<div class="min-w-0">' +
+                      '<div class="text-xs font-medium nvr-text-primary truncate">' + escapeHtml(link.label) + '</div>' +
+                      '<div class="font-mono text-[11px] nvr-text-muted truncate">' + escapeHtml(link.value) + '</div>' +
+                    '</div>' +
+                  '</div>' +
+                  '<span class="font-mono text-xs nvr-text-muted group-hover:nvr-text-primary transition-colors shrink-0" aria-hidden="true">' + arrow + '</span>' +
+                '</a>' +
+              '</li>'
+            );
+          })
+          .join('');
+      }
+
+      /* ------------------------------------------------------------------------
+         4. ROUTING: SUPPORT /@me DIRECTLY, INTERNAL NAV, AND HISTORY
+         ------------------------------------------------------------------------ */
+      let currentRoute = '/@me';
+
+      function resolveInitialRoute() {
+        const hash = window.location.hash.replace(/^#/, '');
+        const pathname = window.location.pathname || '';
+        if (hash === '/' || hash === '/index') return '/';
+        if (hash === '/@me' || hash === '@me') return '/@me';
+        if (pathname.endsWith('/@me') || pathname.includes('@me')) return '/@me';
+        // Default to /@me as the primary target of this deliverables build
+        return '/@me';
+      }
+
+      function setRoute(route, pushHistory) {
+        const normalized = route === '/' ? '/' : '/@me';
+        currentRoute = normalized;
+
+        const viewProfile = document.getElementById('view-profile');
+        const viewHome = document.getElementById('view-home');
+        const breadcrumbBtn = document.getElementById('breadcrumb-route-btn');
+        const canonicalLink = document.getElementById('canonical-link');
+
+        if (normalized === '/@me') {
+          viewProfile.classList.remove('hidden');
+          viewHome.classList.add('hidden');
+          breadcrumbBtn.textContent = '@me';
+          document.title = (profileConfig.displayName || 'Nvirya') + ' (@me) — Independent Developer';
+          if (canonicalLink) canonicalLink.setAttribute('href', 'https://nvirya.com/@me');
+        } else {
+          viewProfile.classList.add('hidden');
+          viewHome.classList.remove('hidden');
+          breadcrumbBtn.textContent = 'index';
+          document.title = 'Nvirya — Independent Technology Ecosystem';
+          if (canonicalLink) canonicalLink.setAttribute('href', 'https://nvirya.com/');
+        }
+
+        // Update nav active states
+        const navBtns = document.querySelectorAll('.nav-route-btn');
+        navBtns.forEach(function (btn) {
+          const btnRoute = btn.getAttribute('data-route');
+          if (btnRoute === normalized) {
+            btn.setAttribute('aria-current', 'page');
+            btn.className = 'nav-route-btn px-2.5 py-1 rounded text-xs font-mono nvr-text-primary border nvr-border nvr-surface';
+          } else {
+            btn.removeAttribute('aria-current');
+            btn.className = 'nav-route-btn px-2.5 py-1 rounded text-xs font-mono nvr-text-secondary nvr-hover';
+          }
+        });
+
+        if (pushHistory) {
+          try {
+            window.location.hash = normalized;
+          } catch (err) {
+            // Ignore in restricted iframe contexts
+          }
+        }
+
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
+
+      /* ------------------------------------------------------------------------
+         5. THEME CONTROLLER (DARK DEFAULT + SWISS PAPER LIGHT)
+         ------------------------------------------------------------------------ */
+      function applyTheme(theme) {
+        const root = document.documentElement;
+        const iconSun = document.getElementById('icon-sun');
+        const iconMoon = document.getElementById('icon-moon');
+        if (theme === 'light') {
+          root.classList.remove('dark');
+          iconSun.classList.add('hidden');
+          iconMoon.classList.remove('hidden');
+        } else {
+          root.classList.add('dark');
+          iconSun.classList.remove('hidden');
+          iconMoon.classList.add('hidden');
+        }
+        try {
+          window.localStorage.setItem(STORAGE_KEY_THEME, theme);
+        } catch (err) {}
+      }
+
+      function initTheme() {
+        let saved = 'dark';
+        try {
+          saved = window.localStorage.getItem(STORAGE_KEY_THEME) || 'dark';
+        } catch (err) {}
+        applyTheme(saved);
+      }
+
+      /* ------------------------------------------------------------------------
+         6. CLIPBOARD & TOAST HELPERS
+         ------------------------------------------------------------------------ */
+      let toastTimeout = null;
+      function showToast(message) {
+        const toast = document.getElementById('status-toast');
+        toast.textContent = message;
+        toast.classList.remove('opacity-0');
+        toast.classList.add('opacity-100');
+        if (toastTimeout) clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(function () {
+          toast.classList.remove('opacity-100');
+          toast.classList.add('opacity-0');
+        }, 2000);
+      }
+
+      function copyText(text, successMsg) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(
+            function () { showToast(successMsg); },
+            function () { fallbackCopy(text, successMsg); }
+          );
+        } else {
+          fallbackCopy(text, successMsg);
+        }
+      }
+
+      function fallbackCopy(text, successMsg) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          showToast(successMsg);
+        } catch (err) {
+          showToast('Copy failed');
+        }
+        document.body.removeChild(ta);
+      }
+
+      /* ------------------------------------------------------------------------
+         7. EVENT LISTENERS & INITIALIZATION
+         ------------------------------------------------------------------------ */
+      function initEvents() {
+        // Brand home button
+        document.getElementById('brand-home-btn').addEventListener('click', function () {
+          setRoute('/', true);
+        });
+
+        // Breadcrumb toggle
+        document.getElementById('breadcrumb-route-btn').addEventListener('click', function () {
+          setRoute(currentRoute === '/@me' ? '/' : '/@me', true);
+        });
+
+        // Top nav route buttons
+        document.querySelectorAll('.nav-route-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            const target = btn.getAttribute('data-route') || '/@me';
+            setRoute(target, true);
+          });
+        });
+
+        // Delegated internal route links
+        document.addEventListener('click', function (e) {
+          const link = e.target.closest('[data-nav-route]');
+          if (link) {
+            e.preventDefault();
+            const target = link.getAttribute('data-nav-route') || '/@me';
+            setRoute(target, true);
+          }
+        });
+
+        // Home to profile button
+        document.getElementById('home-to-profile-btn').addEventListener('click', function () {
+          setRoute('/@me', true);
+        });
+
+        // Hashchange / browser back-forward navigation
+        window.addEventListener('hashchange', function () {
+          const hash = window.location.hash.replace(/^#/, '');
+          if (hash === '/') setRoute('/', false);
+          else if (hash === '/@me' || hash === '@me') setRoute('/@me', false);
+        });
+
+        // Theme toggle
+        document.getElementById('theme-toggle-btn').addEventListener('click', function () {
+          const isDark = document.documentElement.classList.contains('dark');
+          applyTheme(isDark ? 'light' : 'dark');
+        });
+
+        // Copy Email & Canonical URL
+        document.getElementById('copy-email-btn').addEventListener('click', function () {
+          copyText(profileConfig.email || 'me@nvirya.com', 'Copied me@nvirya.com');
+        });
+
+        document.getElementById('copy-canonical-btn').addEventListener('click', function () {
+          copyText('https://nvirya.com/@me', 'Copied https://nvirya.com/@me');
+        });
+
+        // Config Modal Open / Close / Save
+        const configModal = document.getElementById('config-modal');
+        const openConfigBtn = document.getElementById('open-config-btn');
+        const closeConfigBtn = document.getElementById('close-config-btn');
+        const configForm = document.getElementById('config-form');
+
+        function openConfigModal() {
+          document.getElementById('cfg-display-name').value = profileConfig.displayName || '';
+          document.getElementById('cfg-full-name').value = profileConfig.fullName || '';
+          document.getElementById('cfg-role').value = profileConfig.role || '';
+          document.getElementById('cfg-status').value = profileConfig.statusText || '';
+          document.getElementById('cfg-location').value = profileConfig.location || '';
+          document.getElementById('cfg-github').value = profileConfig.githubUrl || '';
+          document.getElementById('cfg-avatar').value = profileConfig.avatarUrl || '';
+          configModal.classList.remove('hidden');
+          configModal.classList.add('flex');
+        }
+
+        function closeConfigModal() {
+          configModal.classList.add('hidden');
+          configModal.classList.remove('flex');
+        }
+
+        openConfigBtn.addEventListener('click', openConfigModal);
+        closeConfigBtn.addEventListener('click', closeConfigModal);
+
+        configModal.addEventListener('click', function (e) {
+          if (e.target === configModal) closeConfigModal();
+        });
+
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !configModal.classList.contains('hidden')) {
+            closeConfigModal();
+          }
+        });
+
+        configForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          profileConfig.displayName = document.getElementById('cfg-display-name').value.trim() || 'Nvirya';
+          profileConfig.fullName = document.getElementById('cfg-full-name').value.trim() || null;
+          profileConfig.role = document.getElementById('cfg-role').value.trim() || 'Independent Developer';
+          profileConfig.statusText = document.getElementById('cfg-status').value.trim() || null;
+          profileConfig.location = document.getElementById('cfg-location').value.trim() || null;
+          profileConfig.githubUrl = document.getElementById('cfg-github').value.trim() || null;
+          profileConfig.avatarUrl = document.getElementById('cfg-avatar').value.trim() || null;
+
+          saveProfileConfig(profileConfig);
+          renderProfile();
+          setRoute('/@me', false);
+          closeConfigModal();
+          showToast('Updated profile.config.js');
+        });
+
+        document.getElementById('reset-config-btn').addEventListener('click', function () {
+          profileConfig = structuredCloneConfig(DEFAULT_PROFILE_CONFIG);
+          saveProfileConfig(profileConfig);
+          renderProfile();
+          closeConfigModal();
+          showToast('Reset to verified defaults');
+        });
+
+        document.getElementById('copy-config-json-btn').addEventListener('click', function () {
+          copyText(JSON.stringify(profileConfig, null, 2), 'Copied profile.config.js JSON');
+        });
+      }
+
+      // Initialize application
+      initTheme();
+      renderProfile();
+      initEvents();
+      setRoute(resolveInitialRoute(), false);
+    })();
+  </script>
+</body>
+</html>
