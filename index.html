@@ -1,0 +1,3226 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-theme-pref="system">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nvirya (@me) — Independent Developer &amp; Web Tooling Portfolio</title>
+  <meta name="description" content="Portfolio of Nvirya (nvirya.com/@me) — independent developer building browser protection utilities (Nvirya AdGuard), developer workspaces (Elyriax / Nvirya AI), and backend APIs.">
+  <link rel="canonical" href="https://nvirya.com/@me">
+
+  <!-- Open Graph & Social Preview Metadata -->
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="Nvirya">
+  <meta property="og:title" content="Nvirya (@me) — Independent Developer Building Tools for the Web">
+  <meta property="og:description" content="Creator of Nvirya AdGuard, Elyriax / Nvirya AI Workspace, Nvirya API, and Sachitone Translator Runtime.">
+  <meta property="og:url" content="https://nvirya.com/@me">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nvirya (@me) — Developer Portfolio">
+  <meta name="twitter:description" content="Independent developer building browser protection tools, web ecosystems, and APIs at nvirya.com/@me.">
+  <meta id="metaThemeColor" name="theme-color" content="#FAFAFA">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230A0A0B'/%3E%3Crect x='4' y='4' width='56' height='56' fill='none' stroke='%23FAFAFA' stroke-width='2'/%3E%3Ctext x='32' y='40' font-family='monospace' font-size='24' font-weight='700' fill='%23FAFAFA' text-anchor='middle'%3ENV%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+
+  <!-- Synchronous Theme Initialization to Prevent Flash of Wrong Theme (FOUC) -->
+  <script>
+(function() {
+  var STORAGE_KEY = 'nvirya_theme_pref';
+  var pref = 'system';
+  try {
+    var saved = window.localStorage.getItem(STORAGE_KEY);
+    if (saved === 'light' || saved === 'dark' || saved === 'system') {
+      pref = saved;
+    }
+  } catch (e) {}
+  var prefersDark = false;
+  try {
+    prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  } catch (e) {}
+  var resolved = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+  document.documentElement.setAttribute('data-theme', resolved);
+  document.documentElement.setAttribute('data-theme-pref', pref);
+})();
+  </script>
+
+  <style>
+/* ==========================================================================
+   NVIRYA (@me) — EDITORIAL PORTFOLIO DESIGN SYSTEM
+   Route: https://nvirya.com/@me | System: NVR://DIGITAL
+   Palette: Near-black, crisp paper white, graphite, muted silver.
+   Zero neon gradients, zero glassmorphism spam, strict typographic hierarchy.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+  --bg-primary: #FAFAFA;
+  --bg-elevated: #FFFFFF;
+  --bg-subtle: #F2F2F3;
+  --bg-code: #F4F4F5;
+  --surface-hover: #EFEFF1;
+  --surface-active: #E4E4E7;
+
+  --text-primary: #0A0A0B;
+  --text-secondary: #3F3F46;
+  --text-muted: #71717A;
+  --text-faint: #A1A1AA;
+  --text-inverse: #FAFAFA;
+
+  --border-hairline: #E4E4E7;
+  --border-strong: #D4D4D8;
+  --border-focus: #0A0A0B;
+
+  --accent-ink: #0A0A0B;
+  --accent-silver: #52525B;
+  --status-active: #15803D;
+  --status-active-bg: #DCFCE7;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --header-h: 60px;
+  --container-max: 1200px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 140ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-base: 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-primary: #09090B;
+  --bg-elevated: #111113;
+  --bg-subtle: #16161A;
+  --bg-code: #0D0D10;
+  --surface-hover: #1C1C21;
+  --surface-active: #27272A;
+
+  --text-primary: #FAFAFA;
+  --text-secondary: #D4D4D8;
+  --text-muted: #A1A1AA;
+  --text-faint: #52525B;
+  --text-inverse: #09090B;
+
+  --border-hairline: #222226;
+  --border-strong: #34343A;
+  --border-focus: #FAFAFA;
+
+  --accent-ink: #FAFAFA;
+  --accent-silver: #A1A1AA;
+  --status-active: #4ADE80;
+  --status-active-bg: rgba(74, 222, 128, 0.12);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 20px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Selection & Focus */
+::selection {
+  background-color: var(--text-primary);
+  color: var(--text-inverse);
+}
+
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Skip Link */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  z-index: 999;
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  padding: 8px 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-decoration: none;
+  border: 1px solid var(--border-strong);
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* Typography Utilities */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.meta-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Architectural Container & Grid */
+.shell-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+@media (min-width: 640px) {
+  .shell-container {
+    padding: 0 24px;
+  }
+}
+
+@media (min-width: 768px) {
+  .shell-container {
+    padding: 0 40px;
+  }
+}
+
+.editorial-frame {
+  border-left: 1px solid var(--border-hairline);
+  border-right: 1px solid var(--border-hairline);
+  min-height: 100vh;
+}
+
+.section-rule {
+  border-top: 1px solid var(--border-hairline);
+}
+
+.section-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--border-hairline);
+  background-color: var(--bg-subtle);
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Header & Navigation */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  height: var(--header-h);
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-hairline);
+  transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 14px;
+}
+
+@media (min-width: 768px) {
+  .header-inner {
+    gap: 16px;
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 440px) {
+  .brand-route {
+    display: none;
+  }
+  .header-inner {
+    padding: 0 10px;
+    gap: 6px;
+  }
+  .header-controls {
+    gap: 6px;
+  }
+  .theme-btn {
+    padding: 3px 5px;
+    font-size: 9.5px;
+  }
+  .mobile-menu-btn {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.brand-mark {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  background-color: var(--text-primary);
+  color: var(--text-inverse);
+  transition: transform var(--transition-fast);
+}
+
+.brand-link:hover .brand-mark {
+  transform: scale(0.95);
+}
+
+.brand-route {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 2px 6px;
+  border: 1px solid var(--border-hairline);
+  background-color: var(--bg-subtle);
+}
+
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
+@media (min-width: 860px) {
+  .desktop-nav {
+    display: flex;
+  }
+}
+
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  transition: color var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background-color: var(--surface-hover);
+}
+
+.nav-link.is-active {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+  background-color: var(--bg-elevated);
+}
+
+/* Theme Segmented Control */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theme-switcher {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-hairline);
+  background-color: var(--bg-subtle);
+  padding: 2px;
+}
+
+.theme-btn {
+  appearance: none;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 9px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.theme-btn:hover {
+  color: var(--text-primary);
+}
+
+.theme-btn[aria-checked="true"] {
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+  font-weight: 500;
+}
+
+/* Mobile Nav Button & Drawer */
+.mobile-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-hairline);
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+@media (min-width: 860px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}
+
+.mobile-drawer {
+  display: none;
+  border-bottom: 1px solid var(--border-strong);
+  background-color: var(--bg-elevated);
+  padding: 16px 24px 20px;
+}
+
+.mobile-drawer.is-open {
+  display: block;
+}
+
+@media (min-width: 860px) {
+  .mobile-drawer {
+    display: none !important;
+  }
+}
+
+.mobile-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border: 1px solid var(--border-hairline);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:focus {
+  border-color: var(--border-strong);
+  background-color: var(--surface-hover);
+}
+
+/* Hero Section */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 7fr 5fr;
+  }
+}
+
+.hero-copy-col {
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+@media (min-width: 768px) {
+  .hero-copy-col {
+    padding: 56px 40px;
+  }
+}
+
+@media (min-width: 960px) {
+  .hero-copy-col {
+    border-bottom: none;
+    border-right: 1px solid var(--border-hairline);
+  }
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--status-active);
+  display: inline-block;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.2vw, 3.35rem);
+  line-height: 1.08;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 22px;
+  max-width: 18ch;
+}
+
+.hero-lead {
+  font-size: clamp(0.98rem, 1.3vw, 1.1rem);
+  color: var(--text-secondary);
+  max-width: 56ch;
+  line-height: 1.65;
+  margin-bottom: 32px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 11px 18px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid var(--text-primary);
+  transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.btn-primary {
+  background-color: var(--text-primary);
+  color: var(--text-inverse);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.btn-secondary:hover {
+  background-color: var(--surface-hover);
+  border-color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.hero-index-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-hairline);
+}
+
+@media (min-width: 640px) {
+  .hero-index-strip {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.index-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.index-stat-k {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.index-stat-v {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Hero Three.js Column */
+.hero-visual-col {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-elevated);
+  position: relative;
+  min-height: 360px;
+}
+
+@media (min-width: 960px) {
+  .hero-visual-col {
+    min-height: 480px;
+  }
+}
+
+.canvas-stage {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  touch-action: pan-y;
+  background-image: radial-gradient(var(--border-strong) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+#heroThreeCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 2;
+  touch-action: pan-y;
+}
+
+.webgl-fallback {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  transition: opacity var(--transition-base);
+}
+
+.webgl-fallback.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fallback-svg {
+  width: 200px;
+  height: 200px;
+  stroke: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.canvas-hud {
+  border-top: 1px solid var(--border-hairline);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background-color: var(--bg-subtle);
+  flex-wrap: wrap;
+}
+
+.hud-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.hud-btn {
+  appearance: none;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.hud-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.hud-btn[aria-pressed="true"] {
+  background-color: var(--text-primary);
+  color: var(--text-inverse);
+  border-color: var(--text-primary);
+}
+
+/* Work Filter & View Bar */
+.work-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border-hairline);
+  gap: 12px;
+  flex-wrap: wrap;
+  background-color: var(--bg-elevated);
+}
+
+@media (min-width: 768px) {
+  .work-toolbar {
+    padding: 16px 40px;
+  }
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.filter-chip {
+  appearance: none;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  padding: 5px 11px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-chip:hover {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.filter-chip.is-active {
+  background-color: var(--text-primary);
+  color: var(--text-inverse);
+  border-color: var(--text-primary);
+}
+
+/* Editorial Work Showcase */
+.project-showcase {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-entry {
+  border-bottom: 1px solid var(--border-hairline);
+  background-color: var(--bg-primary);
+  transition: background-color var(--transition-base);
+}
+
+.project-entry:last-child {
+  border-bottom: none;
+}
+
+.project-entry.is-filtered-out {
+  display: none !important;
+}
+
+/* Featured Flagship Project (01 - Nvirya AdGuard) */
+.project-flagship {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 960px) {
+  .project-flagship {
+    grid-template-columns: 6fr 6fr;
+  }
+}
+
+.project-detail-pane {
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+  .project-detail-pane {
+    padding: 40px;
+  }
+}
+
+@media (min-width: 960px) {
+  .project-flagship .project-detail-pane {
+    border-right: 1px solid var(--border-hairline);
+  }
+}
+
+.project-preview-pane {
+  padding: 28px 24px;
+  background-color: var(--bg-elevated);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-hairline);
+}
+
+@media (min-width: 768px) {
+  .project-preview-pane {
+    padding: 36px 40px;
+  }
+}
+
+@media (min-width: 960px) {
+  .project-flagship .project-preview-pane {
+    border-top: none;
+  }
+}
+
+.project-meta-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.project-index {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 8px;
+  border: 1px solid var(--border-strong);
+  background-color: var(--bg-subtle);
+  color: var(--text-primary);
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.project-desc {
+  color: var(--text-secondary);
+  font-size: 14.5px;
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.feature-spec-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding-left: 0;
+}
+
+.feature-spec-list li {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.spec-bullet {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.tech-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.tech-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 8px;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-secondary);
+}
+
+.project-links-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 1px solid var(--border-strong);
+  background-color: var(--bg-elevated);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.project-link:hover {
+  background-color: var(--text-primary);
+  color: var(--text-inverse);
+  border-color: var(--text-primary);
+}
+
+/* Interactive AdGuard Shield Simulator Widget inside Project 01 */
+.sim-box {
+  border: 1px solid var(--border-strong);
+  background-color: var(--bg-primary);
+}
+
+.sim-header {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-subtle);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.sim-body {
+  padding: 16px;
+}
+
+.sim-module-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 480px) {
+  .sim-module-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sim-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border: 1px solid var(--border-hairline);
+  background-color: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+
+.sim-toggle-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+.sim-toggle-btn[aria-pressed="true"] {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  background-color: var(--bg-subtle);
+}
+
+.sim-state-pill {
+  font-size: 10px;
+  padding: 1px 5px;
+  border: 1px solid var(--border-strong);
+}
+
+.sim-toggle-btn[aria-pressed="true"] .sim-state-pill {
+  background-color: var(--text-primary);
+  color: var(--text-inverse);
+  border-color: var(--text-primary);
+}
+
+.sim-log {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  padding: 10px 12px;
+  background-color: var(--bg-code);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* Asymmetric Split Grid for Projects 02 & 03 */
+.project-asymmetric-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+@media (min-width: 960px) {
+  .project-asymmetric-row {
+    grid-template-columns: 7fr 5fr;
+  }
+}
+
+.project-col-left {
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+@media (min-width: 960px) {
+  .project-col-left {
+    border-bottom: none;
+    border-right: 1px solid var(--border-hairline);
+  }
+}
+
+/* Architectural Blueprint Diagrams inside Project Cards */
+.blueprint-card {
+  margin: 18px 0 22px;
+  border: 1px solid var(--border-hairline);
+  background-color: var(--bg-elevated);
+  padding: 16px;
+}
+
+.blueprint-title {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Compact Index Table View */
+.work-index-table-wrap {
+  display: none;
+  padding: 24px;
+  overflow-x: auto;
+}
+
+@media (min-width: 768px) {
+  .work-index-table-wrap {
+    padding: 32px 40px;
+  }
+}
+
+.work-index-table-wrap.is-visible {
+  display: block;
+}
+
+.project-showcase.is-hidden {
+  display: none;
+}
+
+.editorial-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  text-align: left;
+}
+
+.editorial-table th {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-strong);
+  background-color: var(--bg-subtle);
+}
+
+.editorial-table td {
+  padding: 14px;
+  border-bottom: 1px solid var(--border-hairline);
+  vertical-align: top;
+}
+
+.editorial-table tr:hover td {
+  background-color: var(--surface-hover);
+}
+
+/* Section 02: Interactive Architecture & Runtime Specification Inspector */
+.arch-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .arch-grid {
+    grid-template-columns: 4fr 8fr;
+  }
+}
+
+.arch-tab-list {
+  border-bottom: 1px solid var(--border-hairline);
+  background-color: var(--bg-subtle);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 900px) {
+  .arch-tab-list {
+    border-bottom: none;
+    border-right: 1px solid var(--border-hairline);
+  }
+}
+
+.arch-tab-btn {
+  appearance: none;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-hairline);
+  padding: 18px 24px;
+  text-align: left;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.arch-tab-btn:hover {
+  background-color: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.arch-tab-btn[aria-selected="true"] {
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+  box-shadow: inset 3px 0 0 var(--text-primary);
+}
+
+.arch-tab-id {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.arch-tab-name {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  display: block;
+}
+
+.arch-panel {
+  padding: 28px 24px;
+  background-color: var(--bg-elevated);
+}
+
+@media (min-width: 768px) {
+  .arch-panel {
+    padding: 36px 40px;
+  }
+}
+
+.spec-code-shell {
+  border: 1px solid var(--border-strong);
+  background-color: var(--bg-code);
+  margin-top: 16px;
+}
+
+.spec-code-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border-hairline);
+  background-color: var(--bg-subtle);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.spec-pre {
+  padding: 16px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+/* Section 03: About & Engineering Philosophy */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .about-grid {
+    grid-template-columns: 5fr 7fr;
+  }
+}
+
+.about-lead-col {
+  padding: 36px 24px;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+@media (min-width: 768px) {
+  .about-lead-col {
+    padding: 48px 40px;
+  }
+}
+
+@media (min-width: 900px) {
+  .about-lead-col {
+    border-bottom: none;
+    border-right: 1px solid var(--border-hairline);
+  }
+}
+
+.about-principles-col {
+  padding: 36px 24px;
+  background-color: var(--bg-elevated);
+}
+
+@media (min-width: 768px) {
+  .about-principles-col {
+    padding: 48px 40px;
+  }
+}
+
+.principle-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .principle-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.principle-item {
+  border: 1px solid var(--border-hairline);
+  padding: 18px;
+  background-color: var(--bg-primary);
+}
+
+.principle-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.principle-heading {
+  font-family: var(--font-display);
+  font-size: 15.5px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.principle-body {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Section 04: Contact & Verified Endpoints */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 860px) {
+  .contact-grid {
+    grid-template-columns: 5fr 7fr;
+  }
+}
+
+.contact-intro {
+  padding: 36px 24px;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+@media (min-width: 768px) {
+  .contact-intro {
+    padding: 48px 40px;
+  }
+}
+
+@media (min-width: 860px) {
+  .contact-intro {
+    border-bottom: none;
+    border-right: 1px solid var(--border-hairline);
+  }
+}
+
+.endpoint-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.endpoint-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-hairline);
+  text-decoration: none;
+  color: var(--text-primary);
+  background-color: var(--bg-elevated);
+  transition: background-color var(--transition-fast);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 768px) {
+  .endpoint-row {
+    padding: 22px 40px;
+  }
+}
+
+.endpoint-row:last-child {
+  border-bottom: none;
+}
+
+.endpoint-row:hover {
+  background-color: var(--surface-hover);
+}
+
+.endpoint-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.endpoint-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.endpoint-url {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--border-hairline);
+  padding: 24px;
+  background-color: var(--bg-subtle);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+@media (min-width: 768px) {
+  .site-footer {
+    padding: 24px 40px;
+  }
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+
+.hero-copy-col,
+.hero-visual-col,
+.project-detail-pane,
+.project-preview-pane,
+.project-col-left,
+.project-entry,
+.arch-tab-list,
+.arch-panel,
+.about-lead-col,
+.about-principles-col,
+.contact-intro,
+.endpoint-list {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.spec-code-shell {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.spec-pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+
+@media (max-width: 440px) {
+  .shell-container {
+    padding: 0 6px;
+  }
+  .brand-route {
+    display: none;
+  }
+  .header-inner {
+    padding: 0 8px;
+    gap: 4px;
+  }
+  .header-controls {
+    gap: 4px;
+  }
+  .theme-btn {
+    padding: 3px 5px;
+    font-size: 9.5px;
+  }
+  .mobile-menu-btn {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Toast Notification */
+.toast-region {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 200;
+  pointer-events: none;
+}
+
+.toast-banner {
+  background-color: var(--text-primary);
+  color: var(--text-inverse);
+  border: 1px solid var(--border-strong);
+  padding: 10px 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.toast-banner.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link">Skip to main content</a>
+
+  <div class="shell-container">
+    <div class="editorial-frame">
+
+      <!-- ====================================================================
+           HEADER & NAVIGATION
+           ==================================================================== -->
+      <header class="site-header" role="banner">
+        <div class="header-inner">
+          <a href="#hero" class="brand-link" aria-label="Nvirya Portfolio Home">
+            <span class="brand-mark" aria-hidden="true">NV</span>
+            <span class="font-display">Nvirya</span>
+            <span class="brand-route">/@me</span>
+          </a>
+
+          <nav class="desktop-nav" aria-label="Primary sections">
+            <a href="#work" class="nav-link is-active">01 / Work</a>
+            <a href="#architecture" class="nav-link">02 / Architecture</a>
+            <a href="#about" class="nav-link">03 / About</a>
+            <a href="#contact" class="nav-link">04 / Contact</a>
+          </nav>
+
+          <div class="header-controls">
+            <div class="theme-switcher" role="radiogroup" aria-label="Color theme preference">
+              <button type="button" class="theme-btn" role="radio" aria-checked="true" data-theme-mode="system" title="Follow operating system theme">
+                <span>System</span>
+              </button>
+              <button type="button" class="theme-btn" role="radio" aria-checked="false" data-theme-mode="light" title="Explicit light theme">
+                <span>Light</span>
+              </button>
+              <button type="button" class="theme-btn" role="radio" aria-checked="false" data-theme-mode="dark" title="Explicit dark theme">
+                <span>Dark</span>
+              </button>
+            </div>
+
+            <button type="button" id="mobileMenuBtn" class="mobile-menu-btn" aria-expanded="false" aria-controls="mobileNavDrawer" aria-label="Toggle navigation menu">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                <line x1="3" y1="7" x2="21" y2="7"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="17" x2="21" y2="17"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <nav id="mobileNavDrawer" class="mobile-drawer" aria-label="Mobile navigation">
+          <ul class="mobile-nav-list">
+            <li><a href="#work" class="mobile-nav-link"><span>01 / Selected Work</span><span>&rarr;</span></a></li>
+            <li><a href="#architecture" class="mobile-nav-link"><span>02 / Runtime Architecture</span><span>&rarr;</span></a></li>
+            <li><a href="#about" class="mobile-nav-link"><span>03 / About &amp; Approach</span><span>&rarr;</span></a></li>
+            <li><a href="#contact" class="mobile-nav-link"><span>04 / Verified Channels</span><span>&rarr;</span></a></li>
+          </ul>
+          <div class="meta-label">ROUTE: https://nvirya.com/@me &middot; SYSTEM: NVR://DIGITAL</div>
+        </nav>
+      </header>
+
+      <!-- ====================================================================
+           MAIN CONTENT
+           ==================================================================== -->
+      <main id="mainContent">
+
+        <!-- ==================================================================
+             HERO SECTION
+             ================================================================== -->
+        <section id="hero" aria-labelledby="heroHeading">
+          <div class="hero-grid">
+            <div class="hero-copy-col">
+              <div>
+                <div class="hero-eyebrow">
+                  <span class="status-dot" aria-hidden="true"></span>
+                  <span class="meta-label">NVR://DIGITAL &middot; BUILD 001-ALPHA &middot; NVIRYA.COM/@ME</span>
+                </div>
+
+                <h1 id="heroHeading" class="hero-title">
+                  Independent developer building tools for the web.
+                </h1>
+
+                <p class="hero-lead">
+                  Engineering client-side browser protection utilities, DOM runtime interception layers, unified AI workspaces, and low-overhead backend APIs. Focused on resilient execution, clean interfaces, and software that respects user agency.
+                </p>
+
+                <div class="hero-actions">
+                  <a href="#work" class="btn-primary">
+                    <span>Explore selected work</span>
+                    <span aria-hidden="true">&darr;</span>
+                  </a>
+                  <a href="https://nvirya.com/" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                    <span>Open Nvirya Workspace</span>
+                    <span aria-hidden="true">&#8599;</span>
+                  </a>
+                  <a href="https://greasyfork.org/en/scripts/599226-nvirya-adguard" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                    <span>Greasy Fork Registry</span>
+                    <span aria-hidden="true">&#8599;</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="hero-index-strip" aria-label="Core engineering domains">
+                <div class="index-stat">
+                  <span class="index-stat-k">01 / Shield</span>
+                  <span class="index-stat-v">Nvirya AdGuard v10.4</span>
+                </div>
+                <div class="index-stat">
+                  <span class="index-stat-k">02 / Ecosystem</span>
+                  <span class="index-stat-v">Elyriax &amp; Nvirya AI</span>
+                </div>
+                <div class="index-stat">
+                  <span class="index-stat-k">03 / Gateway</span>
+                  <span class="index-stat-v">api.nvirya.com</span>
+                </div>
+                <div class="index-stat">
+                  <span class="index-stat-k">04 / Runtime</span>
+                  <span class="index-stat-v">Sachitone Translator</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Three.js Computational Geometry Stage + Static Blueprint Fallback -->
+            <div class="hero-visual-col" aria-label="Interactive 3D geometric lattice">
+              <div id="heroCanvasStage" class="canvas-stage">
+                <canvas id="heroThreeCanvas" aria-label="Monochromatic 3D geodesic lattice responding to pointer movement"></canvas>
+
+                <!-- Static SVG Architectural Fallback (Renders immediately before WebGL loads or when WebGL is unavailable) -->
+                <div id="webglFallback" class="webgl-fallback">
+                  <svg class="fallback-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Isometric polyhedral lattice diagram">
+                    <circle cx="100" cy="100" r="84" stroke-width="0.75" stroke-dasharray="3 3" opacity="0.5"/>
+                    <ellipse cx="100" cy="100" rx="84" ry="32" transform="rotate(-28 100 100)" stroke-width="0.85" opacity="0.65"/>
+                    <ellipse cx="100" cy="100" rx="84" ry="32" transform="rotate(38 100 100)" stroke-width="0.85" opacity="0.45"/>
+                    <polygon points="100,24 166,62 166,138 100,176 34,138 34,62" stroke-width="1.2"/>
+                    <polygon points="100,48 146,100 100,152 54,100" stroke-width="1.1"/>
+                    <line x1="100" y1="24" x2="100" y2="176" stroke-width="0.75" opacity="0.55"/>
+                    <line x1="34" y1="62" x2="166" y2="138" stroke-width="0.75" opacity="0.55"/>
+                    <line x1="166" y1="62" x2="34" y2="138" stroke-width="0.75" opacity="0.55"/>
+                    <circle cx="100" cy="24" r="3" fill="currentColor"/>
+                    <circle cx="166" cy="62" r="3" fill="currentColor"/>
+                    <circle cx="166" cy="138" r="3" fill="currentColor"/>
+                    <circle cx="100" cy="176" r="3" fill="currentColor"/>
+                    <circle cx="34" cy="138" r="3" fill="currentColor"/>
+                    <circle cx="34" cy="62" r="3" fill="currentColor"/>
+                    <circle cx="100" cy="100" r="3.5" fill="currentColor"/>
+                  </svg>
+                  <span class="meta-label">GEODESIC NODE LATTICE &middot; NVR-3D</span>
+                </div>
+              </div>
+
+              <div class="canvas-hud">
+                <span id="threeStatusLabel" class="meta-label">WEBGL &middot; ORBITAL LATTICE</span>
+                <div class="hud-controls" role="group" aria-label="3D lattice controls">
+                  <button type="button" id="hudToggleRingsBtn" class="hud-btn" aria-pressed="true">Rings</button>
+                  <button type="button" id="hudToggleMotionBtn" class="hud-btn" aria-pressed="false">Pause</button>
+                  <button type="button" id="hudResetViewBtn" class="hud-btn">Reset Axis</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             01 / SELECTED WORK SECTION
+             ================================================================== -->
+        <section id="work" class="section-rule" aria-labelledby="workHeading">
+          <div class="section-header-bar">
+            <h2 id="workHeading" class="meta-label">01 &mdash; SELECTED WORK &amp; SHIPPED SYSTEMS</h2>
+            <span id="workVisibleCount" class="meta-label">4 / 4 SYSTEMS SHOWN</span>
+          </div>
+
+          <div class="work-toolbar">
+            <div class="filter-group" role="group" aria-label="Filter projects by domain">
+              <button type="button" class="filter-chip is-active" data-filter="all" aria-pressed="true">All Systems</button>
+              <button type="button" class="filter-chip" data-filter="browser" aria-pressed="false">Browser Runtime</button>
+              <button type="button" class="filter-chip" data-filter="ecosystem" aria-pressed="false">Web Ecosystem</button>
+              <button type="button" class="filter-chip" data-filter="backend" aria-pressed="false">Backend &amp; APIs</button>
+            </div>
+
+            <div class="filter-group" role="group" aria-label="Switch project layout">
+              <button type="button" class="filter-chip view-mode-btn is-active" data-view="editorial" aria-pressed="true">Editorial Showcase</button>
+              <button type="button" class="filter-chip view-mode-btn" data-view="table" aria-pressed="false">Technical Index</button>
+            </div>
+          </div>
+
+          <!-- Editorial Mixed-Layout Showcase -->
+          <div id="projectShowcaseContainer" class="project-showcase">
+
+            <!-- PROJECT 01: NVIRYA ADGUARD (Flagship 12-Col Split Showcase) -->
+            <article class="project-entry project-flagship" data-category="browser">
+              <div class="project-detail-pane">
+                <div>
+                  <div class="project-meta-top">
+                    <span class="project-index">01 / BROWSER PROTECTION USERSCRIPT</span>
+                    <span class="status-badge">
+                      <span class="status-dot" aria-hidden="true"></span>
+                      <span>v10.4.1.8 &middot; Active (MIT)</span>
+                    </span>
+                  </div>
+
+                  <h3 class="project-title">Nvirya AdGuard</h3>
+
+                  <p class="project-desc">
+                    A lightweight, mobile-first browser protection and navigation security userscript built for Safari (Stay, Userscripts) and desktop script managers (Tampermonkey, Violentmonkey). Injected at <code>document-start</code> across all frames to neutralize intrusive popunders, click-hijacking listeners, and malicious redirects before they execute.
+                  </p>
+
+                  <ul class="feature-spec-list">
+                    <li>
+                      <span class="spec-bullet">[01]</span>
+                      <span><strong>Pop-up &amp; Redirect Shield:</strong> Wraps <code>window.open</code>, <code>location.assign/replace</code>, and history state mutations to block blank-tab redirects and nested ad URLs.</span>
+                    </li>
+                    <li>
+                      <span class="spec-bullet">[02]</span>
+                      <span><strong>Media-Safe Cosmetic Filtering:</strong> Cleans ad slots, floating banners, and high-z-index invisible overlays while strictly protecting <code>&lt;video&gt;</code>, JWPlayer, Video.js, and Plyr controls.</span>
+                    </li>
+                    <li>
+                      <span class="spec-bullet">[03]</span>
+                      <span><strong>Shadow DOM Action Sheet &amp; Element Picker:</strong> Isolated mobile-native control panel with per-domain whitelisting, rule import/export, and interactive on-page element selection.</span>
+                    </li>
+                  </ul>
+
+                  <div class="tech-tag-row" aria-label="Technologies used in Nvirya AdGuard">
+                    <span class="tech-tag">JavaScript (ES2022)</span>
+                    <span class="tech-tag">Tampermonkey / Violentmonkey</span>
+                    <span class="tech-tag">Safari Userscripts</span>
+                    <span class="tech-tag">Shadow DOM</span>
+                    <span class="tech-tag">MutationObserver</span>
+                    <span class="tech-tag">DOM Security Hooks</span>
+                  </div>
+                </div>
+
+                <div class="project-links-row">
+                  <a href="https://greasyfork.org/en/scripts/599226-nvirya-adguard" target="_blank" rel="noopener noreferrer" class="project-link">
+                    <span>Greasy Fork Script</span>
+                    <span aria-hidden="true">&#8599;</span>
+                  </a>
+                  <a href="https://greasyfork.org/en/scripts/599226-nvirya-adguard/versions" target="_blank" rel="noopener noreferrer" class="project-link">
+                    <span>Version History (v10.4.1.8)</span>
+                    <span aria-hidden="true">&#8599;</span>
+                  </a>
+                  <button type="button" class="project-link" data-inspect-arch="adguard">
+                    <span>Inspect Hook Spec</span>
+                    <span aria-hidden="true">&darr;</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Genuine Interactive Runtime Preview for Nvirya AdGuard -->
+              <div class="project-preview-pane">
+                <div>
+                  <div class="blueprint-title">
+                    <span>INTERACTIVE PREVIEW &middot; RUNTIME INTERCEPTION PIPELINE</span>
+                    <span id="adguardActiveRulesBadge">6/6 HOOKS ACTIVE</span>
+                  </div>
+
+                  <div class="sim-box">
+                    <div class="sim-header">
+                      <span>__NVIRYA_ADGUARD_X__ &middot; CONFIG_VERSION: 3</span>
+                      <span>@run-at document-start</span>
+                    </div>
+                    <div class="sim-body">
+                      <p style="font-size:12.5px; color:var(--text-muted); margin-bottom:12px;">
+                        Toggle actual protection flags from <code>nvirya_x_config</code> to inspect how the runtime evaluates DOM and navigation events:
+                      </p>
+                      <div class="sim-module-grid" role="group" aria-label="Nvirya AdGuard protection modules">
+                        <button type="button" class="sim-toggle-btn" data-sim-key="popupProtection" aria-pressed="true">
+                          <span>popupProtection</span>
+                          <span class="sim-state-pill">ON</span>
+                        </button>
+                        <button type="button" class="sim-toggle-btn" data-sim-key="redirectProtection" aria-pressed="true">
+                          <span>redirectProtection</span>
+                          <span class="sim-state-pill">ON</span>
+                        </button>
+                        <button type="button" class="sim-toggle-btn" data-sim-key="cosmeticFiltering" aria-pressed="true">
+                          <span>cosmeticFiltering</span>
+                          <span class="sim-state-pill">ON</span>
+                        </button>
+                        <button type="button" class="sim-toggle-btn" data-sim-key="playerProtection" aria-pressed="true">
+                          <span>playerProtection</span>
+                          <span class="sim-state-pill">ON</span>
+                        </button>
+                        <button type="button" class="sim-toggle-btn" data-sim-key="antiAdblock" aria-pressed="true">
+                          <span>antiAdblock</span>
+                          <span class="sim-state-pill">ON</span>
+                        </button>
+                        <button type="button" class="sim-toggle-btn" data-sim-key="elementPicker" aria-pressed="true">
+                          <span>elementPicker</span>
+                          <span class="sim-state-pill">ON</span>
+                        </button>
+                      </div>
+
+                      <div id="adguardSimOutput" class="sim-log" aria-live="polite">
+                        [document-start] All 6 protection layers active across frames. Media player nodes (&lt;video&gt;, .jwplayer, .vjs) guarded.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Architectural SVG Diagram of DOM Interception -->
+                <div class="blueprint-card" style="margin-bottom:0; margin-top:16px;">
+                  <div class="blueprint-title">
+                    <span>EXECUTION FLOW</span>
+                    <span>SHADOW DOM ISOLATED</span>
+                  </div>
+                  <svg viewBox="0 0 520 86" width="100%" height="86" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nvirya AdGuard execution flow from document-start hook to protected media DOM">
+                    <rect x="2" y="14" width="112" height="58" stroke="currentColor" stroke-width="1"/>
+                    <text x="12" y="36" fill="currentColor" font-family="monospace" font-size="10" font-weight="600">01. DOC-START</text>
+                    <text x="12" y="54" fill="currentColor" font-family="monospace" font-size="9" opacity="0.7">window.open hook</text>
+
+                    <line x1="114" y1="43" x2="140" y2="43" stroke="currentColor" stroke-width="1"/>
+
+                    <rect x="140" y="14" width="116" height="58" stroke="currentColor" stroke-width="1"/>
+                    <text x="150" y="36" fill="currentColor" font-family="monospace" font-size="10" font-weight="600">02. DOM FILTER</text>
+                    <text x="150" y="54" fill="currentColor" font-family="monospace" font-size="9" opacity="0.7">MutationObserver</text>
+
+                    <line x1="256" y1="43" x2="282" y2="43" stroke="currentColor" stroke-width="1"/>
+
+                    <rect x="282" y="14" width="112" height="58" stroke="currentColor" stroke-width="1"/>
+                    <text x="292" y="36" fill="currentColor" font-family="monospace" font-size="10" font-weight="600">03. MEDIA GUARD</text>
+                    <text x="292" y="54" fill="currentColor" font-family="monospace" font-size="9" opacity="0.7">isProtectedNode()</text>
+
+                    <line x1="394" y1="43" x2="418" y2="43" stroke="currentColor" stroke-width="1"/>
+
+                    <rect x="418" y="14" width="100" height="58" stroke="currentColor" stroke-width="1"/>
+                    <text x="428" y="36" fill="currentColor" font-family="monospace" font-size="10" font-weight="600">04. UI SHEET</text>
+                    <text x="428" y="54" fill="currentColor" font-family="monospace" font-size="9" opacity="0.7">Shadow Root</text>
+                  </svg>
+                </div>
+              </div>
+            </article>
+
+            <!-- PROJECTS 02 & 03: ASYMMETRIC DUAL-COLUMN SHOWCASE -->
+            <div id="asymmetricProjectRow" class="project-asymmetric-row">
+
+              <!-- PROJECT 02: ELYRIAX & NVIRYA AI WORKSPACE (7 Columns) -->
+              <article class="project-entry project-col-left" data-category="ecosystem">
+                <div class="project-detail-pane" style="height:100%;">
+                  <div>
+                    <div class="project-meta-top">
+                      <span class="project-index">02 / UNIFIED WEB ECOSYSTEM &amp; WORKSPACE</span>
+                      <span class="status-badge">
+                        <span class="status-dot" aria-hidden="true"></span>
+                        <span>Live at nvirya.com</span>
+                      </span>
+                    </div>
+
+                    <h3 class="project-title">Elyriax &amp; Nvirya AI Workspace</h3>
+
+                    <p class="project-desc">
+                      A developer-oriented web ecosystem and unified workspace for multi-model conversations, agent tasks, and generated outputs. Engineered with a three-pane layout featuring a collapsible conversation sidebar, a streaming message viewport with expandable reasoning traces, and a live telemetry inspector.
+                    </p>
+
+                    <!-- Architectural Blueprint Preview -->
+                    <div class="blueprint-card">
+                      <div class="blueprint-title">
+                        <span>THREE-PANE WORKSPACE TOPOLOGY</span>
+                        <span>272PX / FLEX / 320PX</span>
+                      </div>
+                      <svg viewBox="0 0 480 110" width="100%" height="110" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three-pane layout diagram of Elyriax and Nvirya AI workspace">
+                        <rect x="2" y="4" width="96" height="102" stroke="currentColor" stroke-width="1"/>
+                        <text x="12" y="24" fill="currentColor" font-family="monospace" font-size="9.5" font-weight="600">SIDEBAR</text>
+                        <line x1="12" y1="34" x2="86" y2="34" stroke="currentColor" stroke-width="0.75" opacity="0.4"/>
+                        <rect x="12" y="44" width="74" height="12" stroke="currentColor" stroke-width="0.75" opacity="0.6"/>
+                        <rect x="12" y="62" width="74" height="12" stroke="currentColor" stroke-width="0.75" opacity="0.4"/>
+                        <rect x="12" y="80" width="74" height="12" stroke="currentColor" stroke-width="0.75" opacity="0.4"/>
+
+                        <rect x="106" y="4" width="252" height="102" stroke="currentColor" stroke-width="1.2"/>
+                        <text x="118" y="24" fill="currentColor" font-family="monospace" font-size="9.5" font-weight="600">STREAM STAGE &amp; REASONING TRACE</text>
+                        <rect x="118" y="34" width="228" height="24" stroke="currentColor" stroke-width="0.75" stroke-dasharray="2 2"/>
+                        <text x="126" y="49" fill="currentColor" font-family="monospace" font-size="8.5" opacity="0.75">&gt; Chain-of-thought reasoning block</text>
+                        <rect x="118" y="66" width="228" height="28" stroke="currentColor" stroke-width="0.9"/>
+                        <text x="126" y="83" fill="currentColor" font-family="monospace" font-size="8.5" opacity="0.8">Composer + Command Palette (Cmd+K)</text>
+
+                        <rect x="366" y="4" width="112" height="102" stroke="currentColor" stroke-width="1"/>
+                        <text x="376" y="24" fill="currentColor" font-family="monospace" font-size="9.5" font-weight="600">INSPECTOR</text>
+                        <text x="376" y="46" fill="currentColor" font-family="monospace" font-size="8.5" opacity="0.7">Token Budget</text>
+                        <rect x="376" y="52" width="90" height="6" stroke="currentColor" stroke-width="0.75"/>
+                        <rect x="376" y="52" width="58" height="6" fill="currentColor"/>
+                        <text x="376" y="76" fill="currentColor" font-family="monospace" font-size="8.5" opacity="0.7">Context Files</text>
+                        <text x="376" y="92" fill="currentColor" font-family="monospace" font-size="8.5" opacity="0.7">Active Plugins</text>
+                      </svg>
+                    </div>
+
+                    <div class="tech-tag-row">
+                      <span class="tech-tag">HTML5 / CSS Tokens</span>
+                      <span class="tech-tag">Streaming Reasoning UI</span>
+                      <span class="tech-tag">Command Palette (⌘K)</span>
+                      <span class="tech-tag">Token Telemetry</span>
+                      <span class="tech-tag">Elyriax AdGuard Lineage</span>
+                    </div>
+                  </div>
+
+                  <div class="project-links-row">
+                    <a href="https://nvirya.com/" target="_blank" rel="noopener noreferrer" class="project-link">
+                      <span>Launch Workspace (nvirya.com)</span>
+                      <span aria-hidden="true">&#8599;</span>
+                    </a>
+                    <button type="button" class="project-link" data-inspect-arch="elyriax">
+                      <span>Inspect Shell Spec</span>
+                      <span aria-hidden="true">&darr;</span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+
+              <!-- PROJECT 03: NVIRYA API (5 Columns) -->
+              <article class="project-entry" data-category="backend">
+                <div class="project-detail-pane" style="height:100%;">
+                  <div>
+                    <div class="project-meta-top">
+                      <span class="project-index">03 / BACKEND GATEWAY &amp; DISTRIBUTION</span>
+                      <span class="status-badge">
+                        <span class="status-dot" aria-hidden="true"></span>
+                        <span>api.nvirya.com</span>
+                      </span>
+                    </div>
+
+                    <h3 class="project-title">Nvirya API</h3>
+
+                    <p class="project-desc">
+                      Core backend API layer and asset distribution service powering the Nvirya workspace (<code>api.nvirya.com</code>) and raw userscript delivery pipeline. Designed around predictable JSON contracts, low-latency session routing, and static manifest distribution.
+                    </p>
+
+                    <div class="blueprint-card">
+                      <div class="blueprint-title">
+                        <span>SERVICE ENDPOINTS</span>
+                        <span>HTTPS / JSON</span>
+                      </div>
+                      <div class="font-mono" style="font-size:11.5px; line-height:1.75; color:var(--text-secondary);">
+                        <div><strong style="color:var(--text-primary);">GATEWAY</strong> &rarr; https://api.nvirya.com</div>
+                        <div><strong style="color:var(--text-primary);">WORKSPACE</strong> &rarr; https://nvirya.com</div>
+                        <div><strong style="color:var(--text-primary);">IDENTITY</strong> &rarr; https://nvirya.com/@me</div>
+                      </div>
+                    </div>
+
+                    <div class="tech-tag-row">
+                      <span class="tech-tag">REST / JSON APIs</span>
+                      <span class="tech-tag">Session &amp; Task Routing</span>
+                      <span class="tech-tag">Userscript Distribution</span>
+                      <span class="tech-tag">Edge Caching</span>
+                    </div>
+                  </div>
+
+                  <div class="project-links-row">
+                    <a href="https://api.nvirya.com" target="_blank" rel="noopener noreferrer" class="project-link">
+                      <span>API Endpoint</span>
+                      <span aria-hidden="true">&#8599;</span>
+                    </a>
+                    <a href="https://nvirya.com/" target="_blank" rel="noopener noreferrer" class="project-link">
+                      <span>Platform Root</span>
+                      <span aria-hidden="true">&#8599;</span>
+                    </a>
+                    <button type="button" class="project-link" data-inspect-arch="api">
+                      <span>Inspect Topology</span>
+                      <span aria-hidden="true">&darr;</span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- PROJECT 04: NVIRYA TRANSLATE / SACHITONE RUNTIME (Full-Width Specification Row) -->
+            <article class="project-entry" data-category="backend">
+              <div class="project-detail-pane">
+                <div class="project-meta-top">
+                  <span class="project-index">04 / ASYNCHRONOUS TRANSLATION SERVICE &amp; BOT RUNTIME</span>
+                  <span class="status-badge">
+                    <span>FastAPI &middot; Uvicorn &middot; SQLite</span>
+                  </span>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr; gap:20px;">
+                  <div>
+                    <h3 class="project-title">Nvirya Translate (Sachitone Runtime)</h3>
+                    <p class="project-desc" style="max-width:78ch;">
+                      A low-footprint translation API and automated Discord gateway bot (<code>Nvirya Translate#8694</code>) engineered with Python, FastAPI, Uvicorn, and SQLite (<code>data/translator.db</code>). Pairs an HTTP translation service with an in-memory channel cache and modular command cogs (<code>translate</code>, <code>auto_translate</code>, <code>settings</code>) for real-time multilingual channel bridging.
+                    </p>
+                    <div class="tech-tag-row" style="margin-bottom:0;">
+                      <span class="tech-tag">Python 3</span>
+                      <span class="tech-tag">FastAPI</span>
+                      <span class="tech-tag">Uvicorn</span>
+                      <span class="tech-tag">discord.py Gateway</span>
+                      <span class="tech-tag">SQLite (translator.db)</span>
+                      <span class="tech-tag">In-Memory Channel Cache</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="project-links-row" style="margin-top:20px;">
+                  <button type="button" class="project-link" data-inspect-arch="api">
+                    <span>Inspect Runtime Architecture</span>
+                    <span aria-hidden="true">&darr;</span>
+                  </button>
+                  <a href="https://nvirya.com/" target="_blank" rel="noopener noreferrer" class="project-link">
+                    <span>Nvirya Ecosystem</span>
+                    <span aria-hidden="true">&#8599;</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Optional Compact Technical Index Table View -->
+          <div id="projectIndexTableContainer" class="work-index-table-wrap">
+            <table class="editorial-table">
+              <thead>
+                <tr>
+                  <th>Index</th>
+                  <th>System</th>
+                  <th>Domain</th>
+                  <th>Stack &amp; Runtime</th>
+                  <th>Status</th>
+                  <th>Verified Destination</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-mono">01</td>
+                  <td><strong>Nvirya AdGuard</strong></td>
+                  <td>Browser Protection Userscript</td>
+                  <td class="font-mono">JS, Shadow DOM, MutationObserver, Tampermonkey / Safari</td>
+                  <td class="font-mono">v10.4.1.8 (MIT)</td>
+                  <td><a href="https://greasyfork.org/en/scripts/599226-nvirya-adguard" target="_blank" rel="noopener noreferrer" class="project-link">Greasy Fork &#8599;</a></td>
+                </tr>
+                <tr>
+                  <td class="font-mono">02</td>
+                  <td><strong>Elyriax &amp; Nvirya AI</strong></td>
+                  <td>Unified Web Workspace</td>
+                  <td class="font-mono">HTML5, CSS Tokens, Streaming UI, Command Palette</td>
+                  <td class="font-mono">Active</td>
+                  <td><a href="https://nvirya.com/" target="_blank" rel="noopener noreferrer" class="project-link">nvirya.com &#8599;</a></td>
+                </tr>
+                <tr>
+                  <td class="font-mono">03</td>
+                  <td><strong>Nvirya API</strong></td>
+                  <td>Backend API Gateway</td>
+                  <td class="font-mono">REST, JSON Contracts, Edge Routing</td>
+                  <td class="font-mono">Active</td>
+                  <td><a href="https://api.nvirya.com" target="_blank" rel="noopener noreferrer" class="project-link">api.nvirya.com &#8599;</a></td>
+                </tr>
+                <tr>
+                  <td class="font-mono">04</td>
+                  <td><strong>Nvirya Translate</strong></td>
+                  <td>Async Translation Runtime</td>
+                  <td class="font-mono">Python, FastAPI, Uvicorn, discord.py, SQLite</td>
+                  <td class="font-mono">v1.0 Runtime</td>
+                  <td><button type="button" class="project-link" data-inspect-arch="api">View Spec &darr;</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             02 / RUNTIME ARCHITECTURE & SPECIFICATION INSPECTOR
+             ================================================================== -->
+        <section id="architecture" class="section-rule" aria-labelledby="archHeading">
+          <div class="section-header-bar">
+            <h2 id="archHeading" class="meta-label">02 &mdash; RUNTIME ARCHITECTURE &amp; SOURCE SPECIFICATIONS</h2>
+            <span class="meta-label">VERIFIED ARTIFACTS</span>
+          </div>
+
+          <div class="arch-grid">
+            <div class="arch-tab-list" role="tablist" aria-label="System architecture specifications">
+              <button type="button" class="arch-tab-btn" role="tab" aria-selected="true" data-arch-tab="adguard">
+                <span class="arch-tab-id">SPEC 01 &middot; USERSCRIPT ENGINE</span>
+                <span class="arch-tab-name">Nvirya AdGuard v10.4 Config &amp; Hooks</span>
+              </button>
+              <button type="button" class="arch-tab-btn" role="tab" aria-selected="false" data-arch-tab="elyriax">
+                <span class="arch-tab-id">SPEC 02 &middot; WORKSPACE SHELL</span>
+                <span class="arch-tab-name">Elyriax / Nvirya AI Layout Contract</span>
+              </button>
+              <button type="button" class="arch-tab-btn" role="tab" aria-selected="false" data-arch-tab="api">
+                <span class="arch-tab-id">SPEC 03 &middot; BACKEND SERVICES</span>
+                <span class="arch-tab-name">Nvirya API &amp; Translator Topology</span>
+              </button>
+            </div>
+
+            <div class="arch-panel" role="tabpanel">
+              <div id="archPanelMeta" class="meta-label" style="margin-bottom:8px;">
+                USERSCRIPT &middot; @run-at document-start &middot; @all-frames true &middot; MIT LICENSE
+              </div>
+              <h3 id="archPanelTitle" class="project-title" style="font-size:1.35rem;">
+                Nvirya AdGuard v10.4 &mdash; Runtime Interception &amp; Storage Architecture
+              </h3>
+              <p id="archPanelSummary" class="project-desc" style="margin-bottom:16px;">
+                Executes before host page scripts to wrap navigation APIs, guard media players against false-positive removal, and isolate its mobile action sheet inside a closed/open Shadow DOM boundary.
+              </p>
+
+              <div class="spec-code-shell">
+                <div class="spec-code-bar">
+                  <span id="archPanelFilename">nvirya-adguard.user.js (v10.3.0 / v10.4.1.8)</span>
+                  <button type="button" id="copyArchSpecBtn" class="hud-btn">Copy Spec</button>
+                </div>
+                <pre id="archPanelCode" class="spec-pre">// ==UserScript==
+// @name         Nvirya AdGuard
+// @namespace    https://nvirya.com/adguard
+// @version      10.4.1.8
+// @match        *://*/*
+// @run-at       document-start
+// @all-frames   true
+// ==/UserScript==
+
+const DEFAULT_CONFIG = {
+  version: 3,
+  enabled: true,
+  popupProtection: true,      // Hooks window.open &amp; synthetic click-hijacks
+  redirectProtection: true,   // Guards location.assign/replace &amp; nested ad URLs
+  cosmeticFiltering: true,    // MutationObserver + selector pruning
+  playerProtection: true,     // Preserves &lt;video&gt;, JWPlayer, Video.js, Plyr
+  antiAdblock: true,          // Neutralizes overlay walls &amp; scroll locks
+  strictMode: false,
+  elementPicker: true,        // Interactive Shadow DOM element selector
+  edgeHandle: true,
+  theme: 'auto'               // 'auto' | 'light' | 'dark'
+};</pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             03 / ABOUT & ENGINEERING PHILOSOPHY
+             ================================================================== -->
+        <section id="about" class="section-rule" aria-labelledby="aboutHeading">
+          <div class="section-header-bar">
+            <h2 id="aboutHeading" class="meta-label">03 &mdash; ABOUT &amp; ENGINEERING APPROACH</h2>
+            <span class="meta-label">INDEPENDENT SOFTWARE ENGINEERING</span>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-lead-col">
+              <div class="meta-label" style="margin-bottom:12px;">IDENTITY &middot; NVIRYA (@ME)</div>
+              <h3 class="project-title" style="margin-bottom:16px;">
+                Practical systems built close to the browser runtime.
+              </h3>
+              <p class="project-desc">
+                Nvirya is an independent developer focused on building software that operates reliably in hostile or complex web environments&mdash;ranging from document-start browser protection scripts and Shadow DOM interfaces to unified AI workspaces and asynchronous Python/FastAPI service backends.
+              </p>
+              <p class="project-desc" style="margin-bottom:0;">
+                Rather than relying on heavy abstraction layers, each project prioritizes direct DOM and network primitives, predictable state persistence, and responsive ergonomics across both mobile Safari and desktop browsers.
+              </p>
+            </div>
+
+            <div class="about-principles-col">
+              <div class="principle-list">
+                <div class="principle-item">
+                  <span class="principle-num">01 / RUNTIME DISCIPLINE</span>
+                  <h4 class="principle-heading">Zero-Bloat Execution</h4>
+                  <p class="principle-body">
+                    Browser tools and userscripts must initialize in milliseconds at <code>document-start</code> without degrading host page frame rates or layout stability.
+                  </p>
+                </div>
+
+                <div class="principle-item">
+                  <span class="principle-num">02 / DEFENSIVE DOM ENGINEERING</span>
+                  <h4 class="principle-heading">Preserve Core Media &amp; UX</h4>
+                  <p class="principle-body">
+                    Aggressive ad and popup interception is paired with explicit node guards so legitimate HTML5 <code>&lt;video&gt;</code>, JWPlayer, and Video.js controls never break.
+                  </p>
+                </div>
+
+                <div class="principle-item">
+                  <span class="principle-num">03 / STYLE ISOLATION</span>
+                  <h4 class="principle-heading">Shadow DOM Boundaries</h4>
+                  <p class="principle-body">
+                    Injected controls and mobile action sheets are encapsulated inside Shadow DOM roots so host CSS cannot bleed into or distort tool interfaces.
+                  </p>
+                </div>
+
+                <div class="principle-item">
+                  <span class="principle-num">04 / CLARITY OVER DECORATION</span>
+                  <h4 class="principle-heading">Intentional Interfaces</h4>
+                  <p class="principle-body">
+                    Interfaces are structured around high-contrast typography, semantic theme tokens, keyboard accessibility, and clear operational feedback.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             04 / CONTACT & VERIFIED DESTINATIONS
+             ================================================================== -->
+        <section id="contact" class="section-rule" aria-labelledby="contactHeading">
+          <div class="section-header-bar">
+            <h2 id="contactHeading" class="meta-label">04 &mdash; VERIFIED DESTINATIONS &amp; CHANNELS</h2>
+            <span class="meta-label">CANONICAL: HTTPS://NVIRYA.COM/@ME</span>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-intro">
+              <div class="meta-label" style="margin-bottom:12px;">DIRECTORY &amp; ENDPOINTS</div>
+              <h3 class="project-title" style="margin-bottom:14px;">
+                Explore live deployments &amp; published code.
+              </h3>
+              <p class="project-desc" style="margin-bottom:24px;">
+                All links below point exclusively to verified deployments, API endpoints, and public script registries operated under the Nvirya identity.
+              </p>
+              <button type="button" id="copyRouteBtn" class="btn-secondary">
+                <span>Copy Portfolio URL (nvirya.com/@me)</span>
+              </button>
+            </div>
+
+            <div class="endpoint-list" role="list">
+              <a href="https://nvirya.com/" target="_blank" rel="noopener noreferrer" class="endpoint-row" role="listitem">
+                <div>
+                  <span class="endpoint-label">01 / Primary Web Platform</span>
+                  <span class="endpoint-title">Nvirya AI &amp; Workspace</span>
+                </div>
+                <span class="endpoint-url">https://nvirya.com/ <span>&#8599;</span></span>
+              </a>
+
+              <a href="https://greasyfork.org/en/scripts/599226-nvirya-adguard" target="_blank" rel="noopener noreferrer" class="endpoint-row" role="listitem">
+                <div>
+                  <span class="endpoint-label">02 / Userscript Registry</span>
+                  <span class="endpoint-title">Nvirya AdGuard on Greasy Fork</span>
+                </div>
+                <span class="endpoint-url">greasyfork.org/en/scripts/599226 <span>&#8599;</span></span>
+              </a>
+
+              <a href="https://greasyfork.org/en/scripts/599226-nvirya-adguard/versions" target="_blank" rel="noopener noreferrer" class="endpoint-row" role="listitem">
+                <div>
+                  <span class="endpoint-label">03 / Release Changelog</span>
+                  <span class="endpoint-title">Nvirya AdGuard Version History</span>
+                </div>
+                <span class="endpoint-url">greasyfork.org/.../versions <span>&#8599;</span></span>
+              </a>
+
+              <a href="https://api.nvirya.com" target="_blank" rel="noopener noreferrer" class="endpoint-row" role="listitem">
+                <div>
+                  <span class="endpoint-label">04 / Core Service Gateway</span>
+                  <span class="endpoint-title">Nvirya API Endpoint</span>
+                </div>
+                <span class="endpoint-url">https://api.nvirya.com <span>&#8599;</span></span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- ====================================================================
+           FOOTER
+           ==================================================================== -->
+      <footer class="site-footer" role="contentinfo">
+        <div class="footer-inner">
+          <div>
+            <span>&copy; 2026 Nvirya &middot; System NVR://DIGITAL &middot; Route </span>
+            <a href="https://nvirya.com/@me" style="color:var(--text-primary); text-decoration:underline;">nvirya.com/@me</a>
+          </div>
+          <div>
+            <span>THEME: <strong id="footerThemeStatus" style="color:var(--text-primary);">SYSTEM</strong></span>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Sandbox-Safe Toast Notification Region -->
+  <div class="toast-region" aria-live="polite" aria-atomic="true">
+    <div id="toastBanner" class="toast-banner"></div>
+  </div>
+
+  <script>
+(function() {
+  'use strict';
+
+  var STORAGE_KEY = 'nvirya_theme_pref';
+  var mediaQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+
+  var appState = {
+    themePref: document.documentElement.getAttribute('data-theme-pref') || 'system',
+    resolvedTheme: document.documentElement.getAttribute('data-theme') || 'light',
+    reducedMotion: motionQuery ? motionQuery.matches : false,
+    activeFilter: 'all',
+    viewMode: 'editorial',
+    activeArchTab: 'adguard',
+    simConfig: {
+      popupProtection: true,
+      redirectProtection: true,
+      cosmeticFiltering: true,
+      playerProtection: true,
+      antiAdblock: true,
+      elementPicker: true
+    },
+    three: {
+      paused: false,
+      showWireframe: true,
+      showRings: true,
+      showNodes: true,
+      inViewport: true,
+      pageVisible: !document.hidden,
+      initialized: false,
+      disposed: false,
+      rafId: null,
+      renderer: null,
+      scene: null,
+      camera: null,
+      rootGroup: null,
+      outerEdges: null,
+      innerMesh: null,
+      innerEdges: null,
+      ringsGroup: null,
+      nodesPoints: null,
+      pointerX: 0,
+      pointerY: 0,
+      targetX: 0,
+      targetY: 0
+    }
+  };
+
+  /* ------------------------------------------------------------------------
+     1. Toast Notification Helper (Sandbox-safe, zero alert/confirm/prompt)
+     ------------------------------------------------------------------------ */
+  var toastTimer = null;
+  function showToast(message) {
+    var toastEl = document.getElementById('toastBanner');
+    if (!toastEl) return;
+    toastEl.textContent = message;
+    toastEl.classList.add('is-visible');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() {
+      toastEl.classList.remove('is-visible');
+    }, 2600);
+  }
+
+  /* ------------------------------------------------------------------------
+     2. Clipboard Helper with Fallback
+     ------------------------------------------------------------------------ */
+  function copyTextToClipboard(text, label) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() {
+        showToast('Copied ' + label + ' to clipboard');
+      }).catch(function() {
+        fallbackCopy(text, label);
+      });
+    } else {
+      fallbackCopy(text, label);
+    }
+  }
+
+  function fallbackCopy(text, label) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('Copied ' + label + ' to clipboard');
+    } catch (e) {
+      showToast('Copy unavailable in this environment');
+    }
+  }
+
+  /* ------------------------------------------------------------------------
+     3. Theme Engine (System / Light / Dark + OS Listener + Persistence)
+     ------------------------------------------------------------------------ */
+  function resolveTheme(pref) {
+    if (pref === 'light' || pref === 'dark') return pref;
+    var isDark = mediaQuery ? mediaQuery.matches : false;
+    return isDark ? 'dark' : 'light';
+  }
+
+  function applyTheme(pref, persist) {
+    var resolved = resolveTheme(pref);
+    appState.themePref = pref;
+    appState.resolvedTheme = resolved;
+
+    document.documentElement.setAttribute('data-theme', resolved);
+    document.documentElement.setAttribute('data-theme-pref', pref);
+
+    var metaTheme = document.getElementById('metaThemeColor');
+    if (metaTheme) {
+      metaTheme.setAttribute('content', resolved === 'dark' ? '#09090B' : '#FAFAFA');
+    }
+
+    if (persist) {
+      try {
+        window.localStorage.setItem(STORAGE_KEY, pref);
+      } catch (e) {}
+    }
+
+    var buttons = document.querySelectorAll('.theme-btn');
+    for (var i = 0; i < buttons.length; i++) {
+      var btn = buttons[i];
+      var mode = btn.getAttribute('data-theme-mode');
+      var isSelected = mode === pref;
+      btn.setAttribute('aria-checked', isSelected ? 'true' : 'false');
+    }
+
+    var footerThemeStatus = document.getElementById('footerThemeStatus');
+    if (footerThemeStatus) {
+      footerThemeStatus.textContent = pref.toUpperCase() + ' (' + resolved.toUpperCase() + ')';
+    }
+
+    updateThreePalette();
+  }
+
+  function initThemeControls() {
+    applyTheme(appState.themePref, false);
+
+    var buttons = document.querySelectorAll('.theme-btn');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', function(e) {
+        var mode = e.currentTarget.getAttribute('data-theme-mode');
+        if (mode) {
+          applyTheme(mode, true);
+          showToast('Theme set to ' + mode.toUpperCase());
+        }
+      });
+    }
+
+    if (mediaQuery) {
+      var onMediaChange = function() {
+        if (appState.themePref === 'system') {
+          applyTheme('system', false);
+        }
+      };
+      if (mediaQuery.addEventListener) {
+        mediaQuery.addEventListener('change', onMediaChange);
+      } else if (mediaQuery.addListener) {
+        mediaQuery.addListener(onMediaChange);
+      }
+    }
+  }
+
+  /* ------------------------------------------------------------------------
+     4. Responsive Mobile Navigation & Section Spy
+     ------------------------------------------------------------------------ */
+  function initNavigation() {
+    var mobileBtn = document.getElementById('mobileMenuBtn');
+    var mobileDrawer = document.getElementById('mobileNavDrawer');
+    if (mobileBtn && mobileDrawer) {
+      mobileBtn.addEventListener('click', function() {
+        var expanded = mobileBtn.getAttribute('aria-expanded') === 'true';
+        var nextState = !expanded;
+        mobileBtn.setAttribute('aria-expanded', nextState ? 'true' : 'false');
+        mobileDrawer.classList.toggle('is-open', nextState);
+      });
+
+      var mobileLinks = mobileDrawer.querySelectorAll('a');
+      for (var i = 0; i < mobileLinks.length; i++) {
+        mobileLinks[i].addEventListener('click', function() {
+          mobileBtn.setAttribute('aria-expanded', 'false');
+          mobileDrawer.classList.remove('is-open');
+        });
+      }
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileDrawer.classList.contains('is-open')) {
+          mobileBtn.setAttribute('aria-expanded', 'false');
+          mobileDrawer.classList.remove('is-open');
+          mobileBtn.focus();
+        }
+      });
+    }
+
+    var sections = document.querySelectorAll('main section[id]');
+    var navLinks = document.querySelectorAll('.desktop-nav .nav-link');
+    if ('IntersectionObserver' in window && sections.length && navLinks.length) {
+      var spyObserver = new IntersectionObserver(function(entries) {
+        for (var i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) {
+            var id = entries[i].target.getAttribute('id');
+            for (var j = 0; j < navLinks.length; j++) {
+              var href = navLinks[j].getAttribute('href');
+              navLinks[j].classList.toggle('is-active', href === '#' + id);
+            }
+          }
+        }
+      }, { rootMargin: '-25% 0px -65% 0px' });
+
+      for (var k = 0; k < sections.length; k++) {
+        spyObserver.observe(sections[k]);
+      }
+    }
+  }
+
+  /* ------------------------------------------------------------------------
+     5. Selected Work Filtering, Layout View Mode & AdGuard Simulator
+     ------------------------------------------------------------------------ */
+  function initWorkSection() {
+    var filterButtons = document.querySelectorAll('.filter-chip[data-filter]');
+    var entries = document.querySelectorAll('.project-entry[data-category]');
+    var countEl = document.getElementById('workVisibleCount');
+
+    function applyFilter(cat) {
+      appState.activeFilter = cat;
+      for (var i = 0; i < filterButtons.length; i++) {
+        var isMatch = filterButtons[i].getAttribute('data-filter') === cat;
+        filterButtons[i].classList.toggle('is-active', isMatch);
+        filterButtons[i].setAttribute('aria-pressed', isMatch ? 'true' : 'false');
+      }
+
+      var visible = 0;
+      for (var j = 0; j < entries.length; j++) {
+        var entryCat = entries[j].getAttribute('data-category') || '';
+        var show = (cat === 'all') || (entryCat.indexOf(cat) !== -1);
+        entries[j].classList.toggle('is-filtered-out', !show);
+        if (show) visible++;
+      }
+
+      var asymRow = document.getElementById('asymmetricProjectRow');
+      if (asymRow) {
+        var rowChildren = asymRow.querySelectorAll('.project-entry');
+        var anyChildVisible = false;
+        for (var r = 0; r < rowChildren.length; r++) {
+          if (!rowChildren[r].classList.contains('is-filtered-out')) {
+            anyChildVisible = true;
+          }
+        }
+        asymRow.style.display = anyChildVisible ? '' : 'none';
+      }
+
+      if (countEl) {
+        countEl.textContent = visible + ' / 4 SYSTEMS SHOWN';
+      }
+    }
+
+    for (var i = 0; i < filterButtons.length; i++) {
+      filterButtons[i].addEventListener('click', function(e) {
+        var cat = e.currentTarget.getAttribute('data-filter') || 'all';
+        applyFilter(cat);
+      });
+    }
+
+    var viewButtons = document.querySelectorAll('.view-mode-btn[data-view]');
+    var showcaseEl = document.getElementById('projectShowcaseContainer');
+    var tableWrapEl = document.getElementById('projectIndexTableContainer');
+
+    for (var v = 0; v < viewButtons.length; v++) {
+      viewButtons[v].addEventListener('click', function(e) {
+        var mode = e.currentTarget.getAttribute('data-view');
+        appState.viewMode = mode;
+        for (var b = 0; b < viewButtons.length; b++) {
+          var active = viewButtons[b].getAttribute('data-view') === mode;
+          viewButtons[b].classList.toggle('is-active', active);
+          viewButtons[b].setAttribute('aria-pressed', active ? 'true' : 'false');
+        }
+        if (showcaseEl && tableWrapEl) {
+          showcaseEl.classList.toggle('is-hidden', mode === 'table');
+          tableWrapEl.classList.toggle('is-visible', mode === 'table');
+        }
+      });
+    }
+
+    /* Interactive AdGuard Runtime Simulator */
+    var simButtons = document.querySelectorAll('.sim-toggle-btn[data-sim-key]');
+    var simLog = document.getElementById('adguardSimOutput');
+    var simActiveBadge = document.getElementById('adguardActiveRulesBadge');
+
+    function updateSimOutput(lastToggledKey) {
+      var activeKeys = [];
+      for (var k in appState.simConfig) {
+        if (appState.simConfig[k]) activeKeys.push(k);
+      }
+      if (simActiveBadge) {
+        simActiveBadge.textContent = activeKeys.length + '/6 HOOKS ACTIVE';
+      }
+      if (!simLog) return;
+
+      var descriptions = {
+        popupProtection: 'window.open & synthetic blank-tab navigation intercepted before tab spawn.',
+        redirectProtection: 'location.assign/replace & history state hijacking neutralized.',
+        cosmeticFiltering: 'Ad containers & high-z-index invisible click-overlays pruned.',
+        playerProtection: 'Protected media nodes (<video>, JWPlayer, Video.js, Plyr) whitelisted.',
+        antiAdblock: 'Overlay wall & scroll-lock scripts disarmed at document-start.',
+        elementPicker: 'Shadow DOM interactive selector picker armed for custom site rules.'
+      };
+
+      var statusLine = lastToggledKey
+        ? ('[' + lastToggledKey + ': ' + (appState.simConfig[lastToggledKey] ? 'ENABLED' : 'BYPASSED') + '] ' + descriptions[lastToggledKey])
+        : '[document-start] All 6 protection layers active across frames. Media player nodes (<video>, .jwplayer, .vjs) guarded.';
+
+      simLog.textContent = statusLine;
+    }
+
+    for (var s = 0; s < simButtons.length; s++) {
+      simButtons[s].addEventListener('click', function(e) {
+        var btn = e.currentTarget;
+        var key = btn.getAttribute('data-sim-key');
+        if (!key) return;
+        appState.simConfig[key] = !appState.simConfig[key];
+        var isOn = appState.simConfig[key];
+        btn.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+        var pill = btn.querySelector('.sim-state-pill');
+        if (pill) pill.textContent = isOn ? 'ON' : 'OFF';
+        updateSimOutput(key);
+      });
+    }
+  }
+
+  /* ------------------------------------------------------------------------
+     6. Architecture & Specification Inspector Tabs
+     ------------------------------------------------------------------------ */
+  var ARCH_SPECS = {
+    adguard: {
+      title: 'Nvirya AdGuard v10.4 — Runtime Interception & Storage Architecture',
+      meta: 'USERSCRIPT · @run-at document-start · @all-frames true · MIT LICENSE',
+      summary: 'Executes before host page scripts to wrap navigation APIs, guard media players against false-positive removal, and isolate its mobile action sheet inside a closed/open Shadow DOM boundary.',
+      filename: 'nvirya-adguard.user.js (v10.3.0 / v10.4.1.8)',
+      code: [
+        "// ==UserScript==",
+        "// @name         Nvirya AdGuard",
+        "// @namespace    https://nvirya.com/adguard",
+        "// @version      10.4.1.8",
+        "// @match        *://*/*",
+        "// @run-at       document-start",
+        "// @all-frames   true",
+        "// ==/UserScript==",
+        "",
+        "const DEFAULT_CONFIG = {",
+        "  version: 3,",
+        "  enabled: true,",
+        "  popupProtection: true,      // Hooks window.open & synthetic click-hijacks",
+        "  redirectProtection: true,   // Guards location.assign/replace & nested ad URLs",
+        "  cosmeticFiltering: true,    // MutationObserver + selector pruning",
+        "  playerProtection: true,     // Preserves <video>, JWPlayer, Video.js, Plyr",
+        "  antiAdblock: true,          // Neutralizes overlay walls & scroll locks",
+        "  strictMode: false,",
+        "  elementPicker: true,        // Interactive Shadow DOM element selector",
+        "  edgeHandle: true,",
+        "  theme: 'auto'               // 'auto' | 'light' | 'dark'",
+        "};"
+      ].join('\n')
+    },
+    elyriax: {
+      title: 'Elyriax / Nvirya AI — Unified Workspace & Streaming Inspector',
+      meta: 'WEB APPLICATION · https://nvirya.com · THREE-PANE SHELL',
+      summary: 'A unified workspace for multi-model conversations, reasoning trace inspection, token usage telemetry, and artifact management with zero external UI framework bloat.',
+      filename: 'elyriax-workspace-shell.spec.json',
+      code: [
+        "{",
+        "  \"application\": \"Nvirya AI / Elyriax Workspace\",",
+        "  \"canonicalOrigin\": \"https://nvirya.com\",",
+        "  \"apiEndpoint\": \"https://api.nvirya.com\",",
+        "  \"layout\": {",
+        "    \"leftPane\": \"Collapsible conversation history & pinned threads (272px / 76px)\",",
+        "    \"centerStage\": \"Streaming message viewport, reasoning trace block & composer\",",
+        "    \"rightInspector\": \"Live token budget bar, active context files & plugin toggles\"",
+        "  },",
+        "  \"capabilities\": [",
+        "    \"Real-time collapsible reasoning & chain-of-thought inspection\",",
+        "    \"Keyboard-first command palette (Cmd/Ctrl + K) & model selector\",",
+        "    \"Syntax-highlighted code blocks with instant clipboard export\"",
+        "  ]",
+        "}"
+      ].join('\n')
+    },
+    api: {
+      title: 'Nvirya API & Sachitone Translator Runtime Topology',
+      meta: 'BACKEND SERVICES · https://api.nvirya.com · FASTAPI + UVICORN + SQLITE',
+      summary: 'Low-overhead service endpoints backing workspace dispatch, raw userscript distribution, and asynchronous multi-guild translation workflows with SQLite persistence.',
+      filename: 'runtime-topology.yaml',
+      code: [
+        "services:",
+        "  nvirya_api_gateway:",
+        "    endpoint: https://api.nvirya.com",
+        "    role: Workspace session dispatch, model routing & telemetry",
+        "  raw_distribution:",
+        "    endpoint: https://raw.nvirya.com/adguard/nvirya-adguard.user.js",
+        "    role: Versioned userscript delivery & update manifest",
+        "  nvirya_translate_runtime:",
+        "    server: Uvicorn / FastAPI (0.0.0.0:25405)",
+        "    persistence: SQLite (data/translator.db) + In-memory channel cache",
+        "    modules:",
+        "      - apps.bot.cogs.translate",
+        "      - apps.bot.cogs.auto_translate",
+        "      - apps.bot.cogs.settings"
+      ].join('\n')
+    }
+  };
+
+  function selectArchTab(tabKey, scrollToSection) {
+    var spec = ARCH_SPECS[tabKey];
+    if (!spec) return;
+    appState.activeArchTab = tabKey;
+
+    var tabBtns = document.querySelectorAll('.arch-tab-btn[data-arch-tab]');
+    for (var i = 0; i < tabBtns.length; i++) {
+      var isSelected = tabBtns[i].getAttribute('data-arch-tab') === tabKey;
+      tabBtns[i].setAttribute('aria-selected', isSelected ? 'true' : 'false');
+    }
+
+    var titleEl = document.getElementById('archPanelTitle');
+    var metaEl = document.getElementById('archPanelMeta');
+    var summaryEl = document.getElementById('archPanelSummary');
+    var fileEl = document.getElementById('archPanelFilename');
+    var codeEl = document.getElementById('archPanelCode');
+
+    if (titleEl) titleEl.textContent = spec.title;
+    if (metaEl) metaEl.textContent = spec.meta;
+    if (summaryEl) summaryEl.textContent = spec.summary;
+    if (fileEl) fileEl.textContent = spec.filename;
+    if (codeEl) codeEl.textContent = spec.code;
+
+    if (scrollToSection) {
+      var sectionEl = document.getElementById('architecture');
+      if (sectionEl && sectionEl.scrollIntoView) {
+        sectionEl.scrollIntoView({ behavior: appState.reducedMotion ? 'auto' : 'smooth' });
+      }
+    }
+  }
+
+  function initArchitectureInspector() {
+    var tabBtns = document.querySelectorAll('.arch-tab-btn[data-arch-tab]');
+    for (var i = 0; i < tabBtns.length; i++) {
+      tabBtns[i].addEventListener('click', function(e) {
+        var key = e.currentTarget.getAttribute('data-arch-tab');
+        if (key) selectArchTab(key, false);
+      });
+    }
+
+    var jumpBtns = document.querySelectorAll('[data-inspect-arch]');
+    for (var j = 0; j < jumpBtns.length; j++) {
+      jumpBtns[j].addEventListener('click', function(e) {
+        e.preventDefault();
+        var key = e.currentTarget.getAttribute('data-inspect-arch');
+        if (key) selectArchTab(key, true);
+      });
+    }
+
+    var copySpecBtn = document.getElementById('copyArchSpecBtn');
+    if (copySpecBtn) {
+      copySpecBtn.addEventListener('click', function() {
+        var spec = ARCH_SPECS[appState.activeArchTab];
+        if (spec) {
+          copyTextToClipboard(spec.code, spec.filename);
+        }
+      });
+    }
+
+    var copyRouteBtn = document.getElementById('copyRouteBtn');
+    if (copyRouteBtn) {
+      copyRouteBtn.addEventListener('click', function() {
+        copyTextToClipboard('https://nvirya.com/@me', 'canonical URL (https://nvirya.com/@me)');
+      });
+    }
+  }
+
+  /* ------------------------------------------------------------------------
+     7. Three.js Precision Computational Geometry Experience (Phase 3)
+        - Dynamically loaded after initial paint
+        - Theme-aware materials (Light & Dark)
+        - Respects prefers-reduced-motion
+        - Pauses when offscreen or hidden
+        - Full WebGL fallback + GPU disposal
+     ------------------------------------------------------------------------ */
+  function getThemeColors() {
+    var isDark = appState.resolvedTheme === 'dark';
+    return {
+      outerWire: isDark ? 0xE4E4E7 : 0x18181B,
+      innerWire: isDark ? 0x71717A : 0x52525B,
+      innerSolid: isDark ? 0x18181B : 0xE4E4E7,
+      rings: isDark ? 0x52525B : 0xA1A1AA,
+      nodes: isDark ? 0xFAFAFA : 0x0A0A0B
+    };
+  }
+
+  function updateThreePalette() {
+    var t = appState.three;
+    if (!t.initialized || t.disposed) return;
+    var palette = getThemeColors();
+    if (t.outerEdges && t.outerEdges.material) {
+      t.outerEdges.material.color.setHex(palette.outerWire);
+    }
+    if (t.innerEdges && t.innerEdges.material) {
+      t.innerEdges.material.color.setHex(palette.innerWire);
+    }
+    if (t.innerMesh && t.innerMesh.material) {
+      t.innerMesh.material.color.setHex(palette.innerSolid);
+    }
+    if (t.ringsGroup) {
+      for (var i = 0; i < t.ringsGroup.children.length; i++) {
+        var child = t.ringsGroup.children[i];
+        if (child.material) child.material.color.setHex(palette.rings);
+      }
+    }
+    if (t.nodesPoints && t.nodesPoints.material) {
+      t.nodesPoints.material.color.setHex(palette.nodes);
+    }
+    renderSingleFrame();
+  }
+
+  function renderSingleFrame() {
+    var t = appState.three;
+    if (!t.initialized || t.disposed || !t.renderer || !t.scene || !t.camera) return;
+    t.renderer.render(t.scene, t.camera);
+  }
+
+  function shouldAnimateThree() {
+    var t = appState.three;
+    return (
+      t.initialized &&
+      !t.disposed &&
+      !t.paused &&
+      !appState.reducedMotion &&
+      t.inViewport &&
+      t.pageVisible
+    );
+  }
+
+  function startThreeLoop() {
+    var t = appState.three;
+    if (t.rafId !== null) return;
+    if (!shouldAnimateThree()) {
+      renderSingleFrame();
+      updateHudStatusText();
+      return;
+    }
+    updateHudStatusText();
+
+    var lastTime = performance.now();
+    function animate(now) {
+      t.rafId = null;
+      if (!shouldAnimateThree()) return;
+
+      var dt = Math.min((now - lastTime) * 0.001, 0.05);
+      lastTime = now;
+
+      t.pointerX += (t.targetX - t.pointerX) * 0.06;
+      t.pointerY += (t.targetY - t.pointerY) * 0.06;
+
+      if (t.rootGroup) {
+        t.rootGroup.rotation.y += dt * 0.22;
+        t.rootGroup.rotation.x = 0.28 + t.pointerY * 0.35;
+        t.rootGroup.rotation.z = t.pointerX * 0.25;
+      }
+      if (t.innerMesh) {
+        t.innerMesh.rotation.y -= dt * 0.36;
+        t.innerMesh.rotation.x += dt * 0.14;
+      }
+      if (t.ringsGroup) {
+        t.ringsGroup.rotation.z += dt * 0.15;
+      }
+
+      t.renderer.render(t.scene, t.camera);
+      t.rafId = window.requestAnimationFrame(animate);
+    }
+
+    t.rafId = window.requestAnimationFrame(animate);
+  }
+
+  function stopThreeLoop() {
+    var t = appState.three;
+    if (t.rafId !== null) {
+      window.cancelAnimationFrame(t.rafId);
+      t.rafId = null;
+    }
+    updateHudStatusText();
+  }
+
+  function updateHudStatusText() {
+    var statusEl = document.getElementById('threeStatusLabel');
+    if (!statusEl) return;
+    var t = appState.three;
+    if (!t.initialized || t.disposed) {
+      statusEl.textContent = 'SVG BLUEPRINT · STATIC';
+      return;
+    }
+    if (appState.reducedMotion) {
+      statusEl.textContent = 'WEBGL · REDUCED MOTION';
+    } else if (t.paused) {
+      statusEl.textContent = 'WEBGL · PAUSED';
+    } else {
+      statusEl.textContent = 'WEBGL · ORBITAL LATTICE';
+    }
+  }
+
+  function buildOrbitalRing(THREE, radius, segments, tiltX, tiltY, colorHex) {
+    var positions = new Float32Array((segments + 1) * 3);
+    for (var i = 0; i <= segments; i++) {
+      var theta = (i / segments) * Math.PI * 2;
+      positions[i * 3] = Math.cos(theta) * radius;
+      positions[i * 3 + 1] = Math.sin(theta) * radius;
+      positions[i * 3 + 2] = 0;
+    }
+    var geom = new THREE.BufferGeometry();
+    geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    var mat = new THREE.LineBasicMaterial({
+      color: colorHex,
+      transparent: true,
+      opacity: 0.45
+    });
+    var line = new THREE.Line(geom, mat);
+    line.rotation.x = tiltX;
+    line.rotation.y = tiltY;
+    return line;
+  }
+
+  function initThreeScene() {
+    var stage = document.getElementById('heroCanvasStage');
+    var canvas = document.getElementById('heroThreeCanvas');
+    var fallback = document.getElementById('webglFallback');
+    if (!stage || !canvas || typeof window.THREE === 'undefined') {
+      updateHudStatusText();
+      return;
+    }
+
+    var THREE = window.THREE;
+    var t = appState.three;
+
+    try {
+      var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) {
+        updateHudStatusText();
+        return;
+      }
+
+      var isMobile = window.innerWidth < 768;
+      var maxDpr = isMobile ? 1.5 : 2;
+      var dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
+
+      var renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        antialias: !isMobile,
+        alpha: true,
+        powerPreference: 'low-power'
+      });
+      renderer.setPixelRatio(dpr);
+
+      var rect = stage.getBoundingClientRect();
+      var width = Math.max(rect.width, 280);
+      var height = Math.max(rect.height, 280);
+      renderer.setSize(width, height, false);
+
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 50);
+      camera.position.set(0, 0, 5.4);
+
+      var rootGroup = new THREE.Group();
+      rootGroup.rotation.x = 0.28;
+      rootGroup.rotation.y = 0.42;
+      scene.add(rootGroup);
+
+      var palette = getThemeColors();
+
+      /* 1. Outer Geodesic Wireframe Lattice */
+      var outerGeo = new THREE.IcosahedronGeometry(1.48, 1);
+      var outerEdgesGeo = new THREE.EdgesGeometry(outerGeo);
+      var outerMat = new THREE.LineBasicMaterial({
+        color: palette.outerWire,
+        transparent: true,
+        opacity: 0.72
+      });
+      var outerEdges = new THREE.LineSegments(outerEdgesGeo, outerMat);
+      rootGroup.add(outerEdges);
+
+      /* 2. Inner Precision Core (Octahedron + Wire Edges) */
+      var innerGeo = new THREE.OctahedronGeometry(0.76, 0);
+      var innerSolidMat = new THREE.MeshBasicMaterial({
+        color: palette.innerSolid,
+        transparent: true,
+        opacity: 0.35
+      });
+      var innerMesh = new THREE.Mesh(innerGeo, innerSolidMat);
+
+      var innerEdgesGeo = new THREE.EdgesGeometry(innerGeo);
+      var innerEdgesMat = new THREE.LineBasicMaterial({
+        color: palette.innerWire,
+        transparent: true,
+        opacity: 0.9
+      });
+      var innerEdges = new THREE.LineSegments(innerEdgesGeo, innerEdgesMat);
+      innerMesh.add(innerEdges);
+      rootGroup.add(innerMesh);
+
+      /* 3. Orthogonal Coordinate Rings */
+      var ringsGroup = new THREE.Group();
+      ringsGroup.add(buildOrbitalRing(THREE, 1.88, 72, Math.PI / 2.3, 0.2, palette.rings));
+      ringsGroup.add(buildOrbitalRing(THREE, 2.05, 72, -Math.PI / 3.1, -0.5, palette.rings));
+      rootGroup.add(ringsGroup);
+
+      /* 4. Vertex Telemetry Nodes */
+      var posAttr = outerGeo.getAttribute('position');
+      var uniqueMap = {};
+      var nodeCoords = [];
+      for (var i = 0; i < posAttr.count; i++) {
+        var vx = posAttr.getX(i);
+        var vy = posAttr.getY(i);
+        var vz = posAttr.getZ(i);
+        var key = vx.toFixed(2) + ',' + vy.toFixed(2) + ',' + vz.toFixed(2);
+        if (!uniqueMap[key]) {
+          uniqueMap[key] = true;
+          nodeCoords.push(vx, vy, vz);
+        }
+      }
+      outerGeo.dispose();
+
+      var nodesGeo = new THREE.BufferGeometry();
+      nodesGeo.setAttribute('position', new THREE.Float32BufferAttribute(nodeCoords, 3));
+      var nodesMat = new THREE.PointsMaterial({
+        color: palette.nodes,
+        size: 0.055,
+        sizeAttenuation: true
+      });
+      var nodesPoints = new THREE.Points(nodesGeo, nodesMat);
+      rootGroup.add(nodesPoints);
+
+      t.renderer = renderer;
+      t.scene = scene;
+      t.camera = camera;
+      t.rootGroup = rootGroup;
+      t.outerEdges = outerEdges;
+      t.innerMesh = innerMesh;
+      t.innerEdges = innerEdges;
+      t.ringsGroup = ringsGroup;
+      t.nodesPoints = nodesPoints;
+      t.initialized = true;
+
+      if (fallback) {
+        fallback.classList.add('is-hidden');
+      }
+
+      /* Pointer & Touch Interaction (non-blocking for scroll) */
+      stage.addEventListener('pointermove', function(e) {
+        var bounds = stage.getBoundingClientRect();
+        var nx = ((e.clientX - bounds.left) / Math.max(bounds.width, 1)) * 2 - 1;
+        var ny = ((e.clientY - bounds.top) / Math.max(bounds.height, 1)) * 2 - 1;
+        t.targetX = nx * 0.65;
+        t.targetY = ny * 0.65;
+        if (!shouldAnimateThree()) {
+          t.pointerX = t.targetX;
+          t.pointerY = t.targetY;
+          rootGroup.rotation.x = 0.28 + t.pointerY * 0.35;
+          rootGroup.rotation.z = t.pointerX * 0.25;
+          renderSingleFrame();
+        }
+      }, { passive: true });
+
+      stage.addEventListener('pointerleave', function() {
+        t.targetX = 0;
+        t.targetY = 0;
+      }, { passive: true });
+
+      /* Context Loss & Restore Safety */
+      canvas.addEventListener('webglcontextlost', function(e) {
+        e.preventDefault();
+        stopThreeLoop();
+        if (fallback) fallback.classList.remove('is-hidden');
+      }, false);
+
+      canvas.addEventListener('webglcontextrestored', function() {
+        if (fallback) fallback.classList.add('is-hidden');
+        startThreeLoop();
+      }, false);
+
+      /* Resize Handling */
+      var handleResize = function() {
+        if (!t.initialized || t.disposed || !t.renderer || !t.camera) return;
+        var r = stage.getBoundingClientRect();
+        var w = Math.max(r.width, 240);
+        var h = Math.max(r.height, 240);
+        var mobileNow = window.innerWidth < 768;
+        t.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobileNow ? 1.5 : 2));
+        t.renderer.setSize(w, h, false);
+        t.camera.aspect = w / h;
+        t.camera.updateProjectionMatrix();
+        renderSingleFrame();
+      };
+
+      window.addEventListener('resize', handleResize, { passive: true });
+      window.addEventListener('orientationchange', handleResize, { passive: true });
+
+      /* Offscreen & Tab Visibility Pause */
+      if ('IntersectionObserver' in window) {
+        var stageObserver = new IntersectionObserver(function(entries) {
+          if (!entries.length) return;
+          t.inViewport = entries[0].isIntersecting;
+          if (t.inViewport) {
+            startThreeLoop();
+          } else {
+            stopThreeLoop();
+          }
+        }, { threshold: 0.05 });
+        stageObserver.observe(stage);
+      }
+
+      document.addEventListener('visibilitychange', function() {
+        t.pageVisible = !document.hidden;
+        if (t.pageVisible) {
+          startThreeLoop();
+        } else {
+          stopThreeLoop();
+        }
+      });
+
+      renderSingleFrame();
+      startThreeLoop();
+    } catch (err) {
+      if (fallback) fallback.classList.remove('is-hidden');
+      updateHudStatusText();
+    }
+  }
+
+  function disposeThreeScene() {
+    var t = appState.three;
+    if (!t.initialized || t.disposed) return;
+    stopThreeLoop();
+    t.disposed = true;
+    try {
+      if (t.scene) {
+        t.scene.traverse(function(obj) {
+          if (obj.geometry) obj.geometry.dispose();
+          if (obj.material) {
+            if (Array.isArray(obj.material)) {
+              for (var i = 0; i < obj.material.length; i++) obj.material[i].dispose();
+            } else {
+              obj.material.dispose();
+            }
+          }
+        });
+      }
+      if (t.renderer) {
+        t.renderer.dispose();
+      }
+    } catch (e) {}
+  }
+
+  function initThreeControlsAndLoader() {
+    var toggleMotionBtn = document.getElementById('hudToggleMotionBtn');
+    var toggleRingsBtn = document.getElementById('hudToggleRingsBtn');
+    var resetViewBtn = document.getElementById('hudResetViewBtn');
+
+    if (toggleMotionBtn) {
+      toggleMotionBtn.addEventListener('click', function() {
+        var t = appState.three;
+        t.paused = !t.paused;
+        toggleMotionBtn.setAttribute('aria-pressed', t.paused ? 'true' : 'false');
+        toggleMotionBtn.textContent = t.paused ? 'Resume' : 'Pause';
+        if (t.paused) {
+          stopThreeLoop();
+        } else {
+          startThreeLoop();
+        }
+      });
+    }
+
+    if (toggleRingsBtn) {
+      toggleRingsBtn.addEventListener('click', function() {
+        var t = appState.three;
+        t.showRings = !t.showRings;
+        toggleRingsBtn.setAttribute('aria-pressed', t.showRings ? 'true' : 'false');
+        if (t.ringsGroup) {
+          t.ringsGroup.visible = t.showRings;
+          renderSingleFrame();
+        }
+      });
+    }
+
+    if (resetViewBtn) {
+      resetViewBtn.addEventListener('click', function() {
+        var t = appState.three;
+        t.targetX = 0;
+        t.targetY = 0;
+        t.pointerX = 0;
+        t.pointerY = 0;
+        if (t.rootGroup) {
+          t.rootGroup.rotation.set(0.28, 0.42, 0);
+        }
+        if (t.innerMesh) {
+          t.innerMesh.rotation.set(0, 0, 0);
+        }
+        renderSingleFrame();
+        showToast('Lattice orientation reset');
+      });
+    }
+
+    if (motionQuery) {
+      var onMotionPrefChange = function(e) {
+        appState.reducedMotion = e.matches;
+        if (appState.reducedMotion) {
+          stopThreeLoop();
+          renderSingleFrame();
+        } else {
+          startThreeLoop();
+        }
+      };
+      if (motionQuery.addEventListener) {
+        motionQuery.addEventListener('change', onMotionPrefChange);
+      } else if (motionQuery.addListener) {
+        motionQuery.addListener(onMotionPrefChange);
+      }
+    }
+
+    window.addEventListener('pagehide', disposeThreeScene);
+
+    /* Dynamically load Three.js after initial render so main content paints first */
+    if (typeof window.THREE !== 'undefined') {
+      initThreeScene();
+    } else {
+      var script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+      script.async = true;
+      script.onload = function() {
+        initThreeScene();
+      };
+      script.onerror = function() {
+        updateHudStatusText();
+      };
+      document.head.appendChild(script);
+    }
+  }
+
+  /* ------------------------------------------------------------------------
+     8. Boot Sequence
+     ------------------------------------------------------------------------ */
+  function boot() {
+    initThemeControls();
+    initNavigation();
+    initWorkSection();
+    initArchitectureInspector();
+    initThreeControlsAndLoader();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+
+  </script>
+</body>
+</html>
